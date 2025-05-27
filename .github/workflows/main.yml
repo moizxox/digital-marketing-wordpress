@@ -3,7 +3,7 @@ name: 🚀 Deploy Theme to DreamHost (SFTP)
 on:
   push:
     branches:
-      - main  # Or your actual branch
+      - main  # or your default branch
 
 jobs:
   deploy:
@@ -20,5 +20,5 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
-          source: "wp-content/themes/digital-marketing-wordpress/*"
+          source: "./*" 
           target: "/home/dh_5egysr/digitalmarketingsupermarket.com/wp-content/themes/digital-marketing-wordpress/"
