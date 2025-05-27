@@ -1,15 +1,24 @@
-name: scp files
-on: [push]
+name: 🚀 Deploy Theme to DreamHost (SFTP)
+
+on:
+  push:
+    branches:
+      - main  # Or your actual branch
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Copy files via SSH
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📤 Upload theme to DreamHost via SFTP
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
-          target: /home/dh_5egysr/digitalmarketingsupermarket.com/wp-content/themes/digital-marketing-wordpress/
+          source: "wp-content/themes/digital-marketing-wordpress/*"
+          target: "/home/dh_5egysr/digitalmarketingsupermarket.com/wp-content/themes/digital-marketing-wordpress/"
