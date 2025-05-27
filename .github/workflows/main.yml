@@ -16,8 +16,8 @@ jobs:
       - name: 📤 Upload theme to DreamHost via SFTP
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
           source: "./*" 
