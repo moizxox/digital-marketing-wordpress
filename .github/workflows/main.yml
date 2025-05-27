@@ -14,6 +14,6 @@ jobs:
         server: pdx1-shared-a3-05.dreamhost.com
         username: dh_5egysr
         password: ${{ secrets.FTPPASSWORD }}
-        protocol: ftps
-        port: 22
+        protocol: ftp
+        port: 21
         server-dir: /home/dh_5egysr/digitalmarketingsupermarket.com/wp-content/themes/digital-marketing-wordpress/
