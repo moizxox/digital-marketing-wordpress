@@ -13,5 +13,5 @@ jobs:
       with:
         server: pdx1-shared-a3-05.dreamhost.com
         username: dh_5egysr
-        password: ${{ secrets.ftp_password }}
+        password: ${{ secrets.FTPPASSWORD }}
         server-dir: /home/dh_5egysr/digitalmarketingsupermarket.com/wp-content/themes/digital-marketing-wordpress
