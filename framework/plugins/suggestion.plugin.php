@@ -131,7 +131,7 @@ class Suggestion extends WB_Plugin {
 	}
 
 	public function action_wp_ajax_suggest() {
-		$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service'))) ? $_GET['type'] : 'tool';
+		$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service', 'ai-tool', 'ai-agent'))) ? $_GET['type'] : 'tool';
 		$term = isset($_GET['term']) ? esc_attr($_GET['term']) : '';
 
 		$suggestions = array();
