@@ -8,10 +8,15 @@ class AI_Agent extends WB_Plugin {
 	private $max_tokens;
 
 	public function __construct() {
+		parent::__construct();
 		$this->api_key = get_option('ai_agent_api_key', '');
 		$this->model = get_option('ai_agent_model', 'gpt-3.5-turbo');
 		$this->temperature = get_option('ai_agent_temperature', 0.7);
 		$this->max_tokens = get_option('ai_agent_max_tokens', 2048);
+		add_action('init', array($this, 'action_init'));
+		add_action('manage_ai-agent_posts_columns', array($this, 'filter_manage_ai_agent_posts_columns'));
+		add_action('manage_ai-agent_posts_custom_column', array($this, 'action_manage_ai_agent_posts_custom_column'), 10, 2);
+		add_action('save_post', array($this, 'action_save_post'));
 	}
 
 	public function action_init() {

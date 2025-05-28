@@ -5,7 +5,12 @@ class AI_Tool extends WB_Plugin {
 	private $tools = array();
 
 	public function __construct() {
+		parent::__construct();
 		$this->register_default_tools();
+		add_action('init', array($this, 'action_init'));
+		add_action('manage_ai-tool_posts_columns', array($this, 'filter_manage_ai_tool_posts_columns'));
+		add_action('manage_ai-tool_posts_custom_column', array($this, 'action_manage_ai_tool_posts_custom_column'), 10, 2);
+		add_action('save_post', array($this, 'action_save_post'));
 	}
 
 	public function action_init() {
