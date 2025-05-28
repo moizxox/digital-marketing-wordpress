@@ -285,7 +285,7 @@ $tags = get_terms(array(
 					<label>
 						<input type="checkbox">
 						<span class="compare-info__check__label">
-							<?php _e('Don't show me this next time', 'wb'); ?>
+							<?php _e('Don\'t show me this next time', 'wb'); ?>
 						</span>
 					</label>
 				</div>
@@ -432,7 +432,7 @@ $tags = get_terms(array(
 									_e('Features', 'wb');
 									break;
 								case 'course':
-									_e('What you'll learn', 'wb');
+									_e('What you\'ll learn', 'wb');
 									break;
 								default:
 									_e('Services', 'wb');
@@ -512,7 +512,7 @@ $tags = get_terms(array(
 											_e('Features', 'wb');
 											break;
 										case 'course':
-											_e('What you'll learn', 'wb');
+											_e('What you\'ll learn', 'wb');
 											break;
 										default:
 											_e('Services', 'wb');
