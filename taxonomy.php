@@ -127,255 +127,9 @@ $tags = get_terms(array(
 			</div>
 		</div>
 		<div class="products-row-small-filter">
-			<div class="product-filter side-panel products-row-small-filter__sidebar">
-				<div class="side-panel__heading">
-					<div class="side-panel__heading__inner">
-						<h3><?php _e('Filter Results', 'wb'); ?></h3>
-						<span class="badge-num found-posts"><?php echo $GLOBALS['total_results']; ?></span>
-						<button class="side-panel-close product-filter__heading__close">
-							<i class="icon icon-close"></i>
-						</button>
-					</div>
-				</div>
-				<form action="<?php echo get_term_link($term); ?>" method="get" autocomplete="off">
-					<input type="hidden" name="type" value="<?php echo $type; ?>">
-					<input type="hidden" name="per_page" value="<?php echo $per_page; ?>">
-					<input type="hidden" name="sort" value="<?php echo $sort; ?>">
-					<div class="side-panel__body">
-						<?php if ($pricing_options) : ?>
-							<div class="product-filter__box">
-								<h3 class="product-filter__box__title">
-									<?php _e('Pricing Options', 'wb'); ?>
-								</h3>
-								<ul class="product-filter__list">
-									<?php foreach ($pricing_options as $_pricing_option) : ?>
-										<li>
-											<label class="product-filter-control">
-												<input type="checkbox" name="pricing_option[]" value="<?php echo $_pricing_option->term_id; ?>" <?php echo in_array($_pricing_option->term_id, $pricing_option) ? 'checked' : ''; ?>>
-												<span class="product-filter-control__label">
-													<?php echo $_pricing_option->name; ?>
-												</span>
-											</label>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						<?php endif; ?>
-						<?php if ($prices) : ?>
-							<div class="product-filter__box">
-								<div class="product-filter__box__heading">
-									<h3 class="product-filter__box__title">
-										<?php _e('Price', 'wb'); ?>
-									</h3>
-									<?php if ($currencies) : ?>
-										<div class="product-filter__box__all">
-											<div class="btn-group btn-group-sm currency-group">
-												<?php foreach ($currencies as $_currency) : ?>
-													<button type="button" class="btn btn-secondary <?php echo ($_currency == $currency) ? 'active' : ''; ?>" data-currency="<?php echo $_currency; ?>">
-														<?php echo $_currency; ?>
-													</button>
-												<?php endforeach; ?>
-											</div>
-											<input type="hidden" name="currency" value="<?php echo $currency; ?>">
-										</div>
-									<?php endif; ?>
-								</div>
-								<ul class="product-filter__list">
-									<li>
-										<label class="product-filter-control">
-											<input type="checkbox" name="price[]" value="0" <?php echo in_array('0', $price) ? 'checked' : ''; ?>>
-											<span class="product-filter-control__label">
-												<?php _e('Free', 'wb'); ?></span>
-										</label>
-									</li>
-									<?php foreach ($prices['list'] as $_price) : ?>
-										<li>
-											<label class="product-filter-control">
-												<input type="checkbox" name="price[]" value="<?php echo $_price['ranges']['min']; ?>-<?php echo $_price['ranges']['max']; ?>" <?php echo in_array($_price['ranges']['min'] . '-' . $_price['ranges']['max'], $price) ? 'checked' : ''; ?>>
-												<span class="product-filter-control__label">
-													<span class="curr-symbol"><?php echo $currency; ?></span><?php echo $_price['ranges']['min']; ?> -
-													<span class="curr-symbol"><?php echo $currency; ?></span><?php echo $_price['ranges']['max']; ?>
-												</span>
-											</label>
-										</li>
-									<?php endforeach; ?>
-									<?php $last_price_range = array_key_last($prices['list']); ?>
-									<?php if ($prices['max'] > $prices['list'][$last_price_range]['ranges']['max']) : ?>
-										<li>
-											<label class="product-filter-control">
-												<input type="checkbox" name="price[]" value="<?php echo $prices['list'][$last_price_range]['ranges']['max']; ?>" <?php echo in_array($prices['list'][$last_price_range]['ranges']['max'], $price) ? 'checked' : ''; ?>>
-												<span class="product-filter-control__label">
-													<?php _e('Over', 'wb'); ?> <span class="curr-symbol"><?php echo $currency; ?></span><?php echo $prices['list'][$last_price_range]['ranges']['max']; ?>
-												</span>
-											</label>
-										</li>
-									<?php endif; ?>
-								</ul>
-							</div>
-						<?php endif; ?>
-						<?php if ($countries) : ?>
-							<div class="product-filter__box">
-								<div class="product-filter__box__heading">
-									<h3 class="product-filter__box__title">
-										<?php _e('Country', 'wb'); ?>
-									</h3>
-									<?php if (count($countries) > 5) : ?>
-										<a href="#id01" class="product-filter__box__all" data-fancybox>
-											<?php _e('See All', 'wb'); ?>
-										</a>
-									<?php endif; ?>
-								</div>
-								<ul class="product-filter__list">
-									<?php foreach (array_slice($countries, 0, 5) as $_country) : ?>
-										<li>
-											<label class="product-filter-control">
-												<input type="checkbox" name="country[]" value="<?php echo $_country->term_id; ?>" <?php echo in_array($_country->term_id, $country) ? 'checked' : ''; ?>>
-												<span class="product-filter-control__label">
-													<?php echo $_country->name; ?>
-												</span>
-											</label>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						<?php endif; ?>
-						<?php if ($cities) : ?>
-							<div class="product-filter__box">
-								<div class="product-filter__box__heading">
-									<h3 class="product-filter__box__title">
-										<?php _e('City', 'wb'); ?>
-									</h3>
-									<?php if (count($cities) > 5) : ?>
-										<a href="#id01" class="product-filter__box__all" data-fancybox>
-											<?php _e('See All', 'wb'); ?>
-										</a>
-									<?php endif; ?>
-								</div>
-								<ul class="product-filter__list">
-									<?php foreach (array_slice($cities, 0, 5) as $_city) : ?>
-										<li>
-											<label class="product-filter-control">
-												<input type="checkbox" name="city[]" value="<?php echo $_city->term_id; ?>" <?php echo in_array($_city->term_id, $city) ? 'checked' : ''; ?>>
-												<span class="product-filter-control__label">
-													<?php echo $_city->name; ?>
-												</span>
-											</label>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						<?php endif; ?>
-						<?php if ($tags) : ?>
-							<div class="product-filter__box">
-								<div class="product-filter__box__heading">
-									<h3 class="product-filter__box__title">
-										<?php
-
-										switch ($type) {
-											case 'tool':
-												_e('Features', 'wb');
-												break;
-											case 'course':
-												_e('What you’ll learn', 'wb');
-												break;
-											default:
-												_e('Services', 'wb');
-												break;
-										}
-
-										?>
-									</h3>
-									<?php if (count($tags) > 5) : ?>
-										<a href="#id01" class="product-filter__box__all" data-fancybox>
-											<?php _e('See All', 'wb'); ?>
-										</a>
-									<?php endif; ?>
-								</div>
-								<ul class="product-filter__list">
-									<?php foreach (array_slice($tags, 0, 5) as $_tag) : ?>
-										<li>
-											<label class="product-filter-control">
-												<input type="checkbox" name="ftag[]" value="<?php echo $_tag->term_id; ?>" <?php echo in_array($_tag->term_id, $tag) ? 'checked' : ''; ?>>
-												<span class="product-filter-control__label">
-													<?php echo $_tag->name; ?>
-												</span>
-											</label>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						<?php endif; ?>
-					</div>
-					<div class="product-filter__bottom">
-						<button class="btn btn-green btn-block product-filter__apply">
-							<?php _e('Apply Filters', 'wb'); ?>
-						</button>
-						<button class="btn btn-link btn-block product-filter__clear" style="display: <?php echo (!empty($pricing_option) || !empty($price) || !empty($country) || !empty($city) || !empty($tag)) ? 'block' : 'none'; ?>">
-							<i class="icon icon-clear"></i>
-							<?php _e('Clear All Filters', 'wb'); ?>
-						</button>
-					</div>
-				</form>
-			</div>
+			<?php include( locate_template( 'template-parts/filter-sidebar.php', false, false ) ); ?>
 			<div class="products-row-small-filter__content">
-				<div class="control-bar control-bar_products">
-					<div class="control-bar__left">
-						<ul class="control-bar-view">
-							<li class="control-bar-item">
-								<label <?php echo !isset($_COOKIE['_lv']) ? 'class="active"' : ''; ?> id="grid">
-									<input type="radio" name="view" <?php echo !isset($_COOKIE['_lv']) ? 'checked' : ''; ?>>
-									<span class="control-bar__label"><?php _e('Grid View', 'wb'); ?></span>
-								</label>
-							</li>
-							<li class="control-bar-item">
-								<label <?php echo isset($_COOKIE['_lv']) ? 'class="active"' : ''; ?> id="list">
-									<input type="radio" name="view" <?php echo isset($_COOKIE['_lv']) ? 'checked' : ''; ?>>
-									<span class="control-bar__label"><?php _e('List View', 'wb'); ?></span>
-								</label>
-							</li>
-						</ul>
-					</div>
-					<div class="control-bar__right">
-						<form method="get">
-							<ul class="control-bar-list">
-								<li class="control-bar-item">
-									<div class="control-bar__label"><?php _e('Show', 'wb'); ?></div>
-									<select name="per_page" class="control-bar__select select-styler"> 
-										<option value="12" <?php selected('12', $per_page); ?>>
-											<?php _e('12 per page', 'wb'); ?>
-										</option>
-										<option value="24" <?php selected('24', $per_page); ?>>
-											<?php _e('24 per page', 'wb'); ?>
-										</option>
-										<option value="48" <?php selected('48', $per_page); ?>>
-											<?php _e('48 per page', 'wb'); ?>
-										</option>
-										<option value="96" <?php selected('96', $per_page); ?>>
-											<?php _e('96 per page', 'wb'); ?>
-										</option>
-									</select>
-								</li>
-								<li class="control-bar-item">
-									<div class="control-bar__label"><?php _e('Sort by', 'wb'); ?></div>
-									<select name="sort" class="control-bar__select select-styler">
-										<option value="alphabetically" <?php selected('alphabetically', $sort); ?>>
-											<?php _e('Alphabetically', 'wb'); ?>
-										</option>
-										<option value="popularity" <?php selected('popularity', $sort); ?>>
-											<?php _e('Popularity', 'wb'); ?>
-										</option>
-										<option value="price-hl" <?php selected('price-hl', $sort); ?>>
-											<?php _e('Price (High to Low)', 'wb'); ?>
-										</option>
-										<option value="price-lh" <?php selected('price-lh', $sort); ?>>
-											<?php _e('Price (Low to High)', 'wb'); ?>
-										</option>
-									</select>
-								</li>
-							</ul>
-						</form>
-					</div>
-				</div>
+				<?php include( locate_template( 'template-parts/control-bar-view.php', false, false ) ); ?>
 				<div class="side-toggle">
 					<h3><?php _e('Filter', 'wb'); ?></h3>
 					<span class="badge-num found-posts"><?php echo $term->count; ?></span>
@@ -524,14 +278,14 @@ $tags = get_terms(array(
 					<img src="<?php echo WB_THEME_URL; ?>/images/compare-add.png" srcset="<?php echo WB_THEME_URL; ?>/images/compare-add@2x.png 2x" alt="<?php _e('Compare', 'wb'); ?>">
 				</div>
 				<h3 class="compare-info__title">
-					<?php _e(sprintf('You added “%s” to the comparison list.', '<span id="title"></span>'), 'wb'); ?> <br>
+					<?php _e(sprintf('You added "%s" to the comparison list.', '<span id="title"></span>'), 'wb'); ?> <br>
 					<?php _e(sprintf('You have %s items in your comparison list.', '<span class="badge-num">1</span>'), 'wb'); ?>
 				</h3>
 				<div class="compare-info__check">
 					<label>
 						<input type="checkbox">
 						<span class="compare-info__check__label">
-							<?php _e('Don’t show me this next time', 'wb'); ?>
+							<?php _e('Don't show me this next time', 'wb'); ?>
 						</span>
 					</label>
 				</div>
@@ -678,7 +432,7 @@ $tags = get_terms(array(
 									_e('Features', 'wb');
 									break;
 								case 'course':
-									_e('What you’ll learn', 'wb');
+									_e('What you'll learn', 'wb');
 									break;
 								default:
 									_e('Services', 'wb');
@@ -758,7 +512,7 @@ $tags = get_terms(array(
 											_e('Features', 'wb');
 											break;
 										case 'course':
-											_e('What you’ll learn', 'wb');
+											_e('What you'll learn', 'wb');
 											break;
 										default:
 											_e('Services', 'wb');
