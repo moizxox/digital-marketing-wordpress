@@ -45,6 +45,7 @@
 					<a href="<?php _e('/privacy-policy-2/', 'wb'); ?>" title="Pricacy Policy">Learn more.</a>
 				</p>
 				<a href="#" title="Accept Cookies" class="accept-cta">Accept</a>
+				<span>extra fiels</span>
 			</div>
 		</div>
 	</body>
