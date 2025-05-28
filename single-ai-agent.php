@@ -15,30 +15,6 @@ the_post();
 $categories = wp_get_post_terms($post->ID, 'ai-agent-category', 'fields=ids');
 $tags = wp_get_post_terms($post->ID, 'ai-agent-tag');
 $pricing_options = wp_get_post_terms($post->ID, 'ai-agent-pricing-option');
-
-$related_agents = array();
-
-if ($related_agents = get_post_meta($post->ID, '_related_agents', true)) {
-	$related_agents = get_posts(array(
-		'post_type' => 'ai-agent',
-		'numberposts' => 12,
-		'post__in' => $related_agents
-	));
-} else if ($categories) {
-	$related_agents = get_posts(array(
-		'post_type' => 'ai-agent',
-		'posts_per_page' => 12,
-		'post__not_in' => array($post->ID),
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'ai-agent-category',
-				'field' => 'term_id',
-				'terms' => $categories,
-				'operator' => 'IN'
-			)
-		)
-	));
-}
 ?>
 
 <div class="hero hero_single heading-bg">

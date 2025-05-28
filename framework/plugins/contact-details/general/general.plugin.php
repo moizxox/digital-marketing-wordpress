@@ -12,7 +12,7 @@ class General extends WB_Plugin {
 			'facebook_link' => '',
 			'linkedin_link' => '',
 			'instagram_link' => '',
-			'footer_text' => sprintf('&copy; %d Copyright Digital Marketing Supermarket. Made by <a href="https://www.woobro.com" target="_blank">WOOBRO</a>', date('Y'))
+			'footer_text' => sprintf('tags added &copy; %d Copyright Digital Marketing Supermarket. Made by <a href="https://www.woobro.com" target="_blank">WOOBRO</a>', date('Y'))
 		);
 	}
 

@@ -73,6 +73,30 @@ class AI_Agent extends WB_Plugin {
 			'show_admin_column' => true,
 			'hierarchical' => true
 		));
+
+		register_taxonomy('ai-agent-tag', 'ai-agent', array(
+			'labels' => array(
+				'name'                       => _x('Tags', 'taxonomy general name', 'wb'),
+				'singular_name'              => _x('Tag', 'taxonomy singular name', 'wb'),
+				'search_items'               => __('Search Tags', 'wb'),
+				'popular_items'              => __('Popular Tags', 'wb'),
+				'all_items'                  => __('All Tags', 'wb'),
+				'parent_item'                => null,
+				'parent_item_colon'          => null,
+				'edit_item'                  => __('Edit Tag', 'wb'),
+				'update_item'                => __('Update Tag', 'wb'),
+				'add_new_item'               => __('Add New Tag', 'wb'),
+				'new_item_name'              => __('New Tag Name', 'wb'),
+				'separate_items_with_commas' => __('Separate tags with commas', 'wb'),
+				'add_or_remove_items'        => __('Add or remove tags', 'wb'),
+				'choose_from_most_used'      => __('Choose from the most used tags', 'wb'),
+				'not_found'                  => __('No tags found.', 'wb'),
+				'menu_name'                  => __('Tags', 'wb'),
+			),
+			'public' => true,
+			'show_admin_column' => true,
+			'hierarchical' => false
+		));
 	}
 
 	public function filter_manage_ai_agent_posts_columns($columns) {
@@ -128,14 +152,6 @@ class AI_Agent extends WB_Plugin {
 			update_post_meta($post_id, '_additional_content_text', $_POST['additional_content_text']);
 		}
 
-		if (isset($_POST['related_ai_agents_meta_box_nonce']) && wp_verify_nonce($_POST['related_ai_agents_meta_box_nonce'], 'related_ai_agents_meta_box')) {
-			if ($_POST['related_agents']) {
-				update_post_meta($post_id, '_related_agents', $_POST['related_agents']);
-			} else {
-				delete_post_meta($post_id, '_related_agents');
-			}
-		}
-
 		if (isset($_POST['ai_agent_contacts_meta_box_nonce']) && wp_verify_nonce($_POST['ai_agent_contacts_meta_box_nonce'], 'ai_agent_contacts_meta_box')) {
 			update_post_meta($post_id, '_contacts_email', esc_attr($_POST['contacts_email']));
 			update_post_meta($post_id, '_contacts_phone', esc_attr($_POST['contacts_phone']));
@@ -149,7 +165,6 @@ class AI_Agent extends WB_Plugin {
 		add_meta_box('ai-agent-details', __('AI Agent Details', 'tb'), array($this, 'ai_agent_details_meta_box'), 'ai-agent', 'side');
 		add_meta_box('ai-agent-clients', __('AI Agent Clients', 'tb'), array($this, 'ai_agent_clients_meta_box'), 'ai-agent', 'normal');
 		add_meta_box('ai-agent-additional-content', __('AI Agent Additional Content', 'tb'), array($this, 'ai_agent_additional_content_box'), 'ai-agent', 'normal');
-		add_meta_box('related-ai-agents', __('Related AI Agents', 'wb'), array($this, 'related_ai_agents_meta_box'), 'ai-agent', 'side');
 		add_meta_box('ai-agent-contacts', __('AI Agent Contacts (Internal)', 'tb'), array($this, 'ai_agent_contacts_meta_box'), 'ai-agent', 'side');
 	}
 
@@ -285,58 +300,6 @@ class AI_Agent extends WB_Plugin {
 			</div>
 		</div>
 		<?php
-	}
-
-	public function related_ai_agents_meta_box($post) {
-		wp_nonce_field('related_ai_agents_meta_box', 'related_ai_agents_meta_box_nonce');
-		$related_agents = get_post_meta($post->ID, '_related_agents', true);
-		if ($related_agents) {
-			$related_agents = get_posts(array(
-				'post_type' => 'ai-agent',
-				'numberposts' => 12,
-				'post__in' => $related_agents
-			));
-		}
-		?>
-		<p>
-			<label for="related_agents"><?php _e('AI Agents', 'wb'); ?></label>
-			<select name="related_agents[]" class="widefat" id="related_agents" multiple>
-				<?php if ($related_agents) : ?>
-					<?php foreach ($related_agents as $related_agent) : ?>
-						<option value="<?php echo $related_agent->ID; ?>" selected>
-							<?php echo $related_agent->post_title; ?>
-						</option>
-					<?php endforeach; ?>
-				<?php endif; ?>
-			</select>
-		</p>
-		<script type="text/javascript">
-			jQuery(function ($) {
-				$('#related_agents').select2({
-					placeholder: '<?php _e('Choose AI Agents', 'wb'); ?>',
-					allowClear: true,
-					tags: true,
-					ajax: {
-						url: '<?php echo add_query_arg('action', 'get_ai_agents', admin_url('admin-ajax.php')); ?>',
-						dataType: 'json',
-						delay: 250,
-						data: function (params) {
-							return {
-								term: params.term
-							};
-						},
-						processResults: function (data, params) {
-							return {
-								results: data
-							};
-						}
-					}
-				});
-			});
-		</script>
-		<?php
-		wp_enqueue_style('select2', WB_THEME_URL . '/css/select2.css');
-		wp_enqueue_script('select2', WB_THEME_URL . '/js/select2.js', array('jquery'));
 	}
 
 	public function ai_agent_contacts_meta_box($post) {

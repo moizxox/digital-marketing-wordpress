@@ -15,30 +15,6 @@ the_post();
 $categories = wp_get_post_terms($post->ID, 'ai-tool-category', 'fields=ids');
 $tags = wp_get_post_terms($post->ID, 'ai-tool-tag');
 $pricing_options = wp_get_post_terms($post->ID, 'ai-tool-pricing-option');
-
-$related_tools = array();
-
-if ($related_tools = get_post_meta($post->ID, '_related_tools', true)) {
-	$related_tools = get_posts(array(
-		'post_type' => 'ai-tool',
-		'numberposts' => 12,
-		'post__in' => $related_tools
-	));
-} else if ($categories) {
-	$related_tools = get_posts(array(
-		'post_type' => 'ai-tool',
-		'posts_per_page' => 12,
-		'post__not_in' => array($post->ID),
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'ai-tool-category',
-				'field' => 'term_id',
-				'terms' => $categories,
-				'operator' => 'IN'
-			)
-		)
-	));
-}
 ?>
 
 <div class="hero hero_single heading-bg">

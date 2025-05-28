@@ -73,6 +73,30 @@ class AI_Tool extends WB_Plugin {
 			'show_admin_column' => true,
 			'hierarchical' => true
 		));
+
+		register_taxonomy('ai-tool-tag', 'ai-tool', array(
+			'labels' => array(
+				'name'                       => _x('Tags', 'taxonomy general name', 'wb'),
+				'singular_name'              => _x('Tag', 'taxonomy singular name', 'wb'),
+				'search_items'               => __('Search Tags', 'wb'),
+				'popular_items'              => __('Popular Tags', 'wb'),
+				'all_items'                  => __('All Tags', 'wb'),
+				'parent_item'                => null,
+				'parent_item_colon'          => null,
+				'edit_item'                  => __('Edit Tag', 'wb'),
+				'update_item'                => __('Update Tag', 'wb'),
+				'add_new_item'               => __('Add New Tag', 'wb'),
+				'new_item_name'              => __('New Tag Name', 'wb'),
+				'separate_items_with_commas' => __('Separate tags with commas', 'wb'),
+				'add_or_remove_items'        => __('Add or remove tags', 'wb'),
+				'choose_from_most_used'      => __('Choose from the most used tags', 'wb'),
+				'not_found'                  => __('No tags found.', 'wb'),
+				'menu_name'                  => __('Tags', 'wb'),
+			),
+			'public' => true,
+			'show_admin_column' => true,
+			'hierarchical' => false
+		));
 	}
 
 	public function filter_manage_ai_tool_posts_columns($columns) {
@@ -128,14 +152,6 @@ class AI_Tool extends WB_Plugin {
 			update_post_meta($post_id, '_additional_content_text', $_POST['additional_content_text']);
 		}
 
-		if (isset($_POST['related_ai_tools_meta_box_nonce']) && wp_verify_nonce($_POST['related_ai_tools_meta_box_nonce'], 'related_ai_tools_meta_box')) {
-			if ($_POST['related_tools']) {
-				update_post_meta($post_id, '_related_tools', $_POST['related_tools']);
-			} else {
-				delete_post_meta($post_id, '_related_tools');
-			}
-		}
-
 		if (isset($_POST['ai_tool_contacts_meta_box_nonce']) && wp_verify_nonce($_POST['ai_tool_contacts_meta_box_nonce'], 'ai_tool_contacts_meta_box')) {
 			update_post_meta($post_id, '_contacts_email', esc_attr($_POST['contacts_email']));
 			update_post_meta($post_id, '_contacts_phone', esc_attr($_POST['contacts_phone']));
@@ -149,7 +165,6 @@ class AI_Tool extends WB_Plugin {
 		add_meta_box('ai-tool-details', __('AI Tool Details', 'tb'), array($this, 'ai_tool_details_meta_box'), 'ai-tool', 'side');
 		add_meta_box('ai-tool-clients', __('AI Tool Clients', 'tb'), array($this, 'ai_tool_clients_meta_box'), 'ai-tool', 'normal');
 		add_meta_box('ai-tool-additional-content', __('AI Tool Additional Content', 'tb'), array($this, 'ai_tool_additional_content_box'), 'ai-tool', 'normal');
-		add_meta_box('related-ai-tools', __('Related AI Tools', 'wb'), array($this, 'related_ai_tools_meta_box'), 'ai-tool', 'side');
 		add_meta_box('ai-tool-contacts', __('AI Tool Contacts (Internal)', 'tb'), array($this, 'ai_tool_contacts_meta_box'), 'ai-tool', 'side');
 	}
 
@@ -285,58 +300,6 @@ class AI_Tool extends WB_Plugin {
 			</div>
 		</div>
 		<?php
-	}
-
-	public function related_ai_tools_meta_box($post) {
-		wp_nonce_field('related_ai_tools_meta_box', 'related_ai_tools_meta_box_nonce');
-		$related_tools = get_post_meta($post->ID, '_related_tools', true);
-		if ($related_tools) {
-			$related_tools = get_posts(array(
-				'post_type' => 'ai-tool',
-				'numberposts' => 12,
-				'post__in' => $related_tools
-			));
-		}
-		?>
-		<p>
-			<label for="related_tools"><?php _e('AI Tools', 'wb'); ?></label>
-			<select name="related_tools[]" class="widefat" id="related_tools" multiple>
-				<?php if ($related_tools) : ?>
-					<?php foreach ($related_tools as $related_tool) : ?>
-						<option value="<?php echo $related_tool->ID; ?>" selected>
-							<?php echo $related_tool->post_title; ?>
-						</option>
-					<?php endforeach; ?>
-				<?php endif; ?>
-			</select>
-		</p>
-		<script type="text/javascript">
-			jQuery(function ($) {
-				$('#related_tools').select2({
-					placeholder: '<?php _e('Choose AI Tools', 'wb'); ?>',
-					allowClear: true,
-					tags: true,
-					ajax: {
-						url: '<?php echo add_query_arg('action', 'get_ai_tools', admin_url('admin-ajax.php')); ?>',
-						dataType: 'json',
-						delay: 250,
-						data: function (params) {
-							return {
-								term: params.term
-							};
-						},
-						processResults: function (data, params) {
-							return {
-								results: data
-							};
-						}
-					}
-				});
-			});
-		</script>
-		<?php
-		wp_enqueue_style('select2', WB_THEME_URL . '/css/select2.css');
-		wp_enqueue_script('select2', WB_THEME_URL . '/js/select2.js', array('jquery'));
 	}
 
 	public function ai_tool_contacts_meta_box($post) {
