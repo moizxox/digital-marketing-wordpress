@@ -84,7 +84,7 @@
 					</ul>
 				</div>
 			<?php endif; ?>
-			<?php if ($countries) : ?>
+			<?php if ($countries && in_array($type, ['tool', 'service'])) : ?>
 				<div class="product-filter__box">
 					<div class="product-filter__box__heading">
 						<h3 class="product-filter__box__title">
@@ -142,14 +142,14 @@
 						<h3 class="product-filter__box__title">
 							<?php
 							switch ($type) {
-								case 'tool':
-									_e('Features', 'wb');
-									break;
 								case 'course':
 									_e("What you'll learn", 'wb');
 									break;
-								default:
+								case 'service':
 									_e('Services', 'wb');
+									break;
+								default:
+									_e('Features', 'wb');
 									break;
 							}
 							?>

@@ -14,6 +14,9 @@ global $wpdb;
 $term = get_queried_object();
 
 $type = str_replace(array('-category', '-tag'), '', $term->taxonomy);
+if (empty($_GET['type'])) {
+	$_GET['type'] = $type;
+}
 $per_page = (isset($_GET['per_page']) && in_array($_GET['per_page'], array('12', '24', '48', '96'))) ? $_GET['per_page'] : '12';
 $sort = (isset($_GET['sort']) && in_array($_GET['sort'], array('alphabetically', 'popularity', 'price-hl', 'price-lh'))) ? $_GET['sort'] : 'alphabetically';
 $pricing_option = isset($_GET['pricing_option']) ? (array) $_GET['pricing_option'] : array();
