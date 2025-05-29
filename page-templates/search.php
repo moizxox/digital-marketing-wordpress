@@ -17,7 +17,7 @@ the_post();
 
 global $wpdb;
 
-$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service'))) ? $_GET['type'] : 'tool';
+$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service', 'ai-tool', 'ai-agent'))) ? $_GET['type'] : 'tool';
 $query = isset($_GET['query']) ? esc_attr($_GET['query']) : '';
 $per_page = (isset($_GET['per_page']) && in_array($_GET['per_page'], array('12', '24', '48', '96'))) ? $_GET['per_page'] : '12';
 $sort = (isset($_GET['sort']) && in_array($_GET['sort'], array('alphabetically', 'popularity', 'price-hl', 'price-lh'))) ? $_GET['sort'] : 'alphabetically';
@@ -121,6 +121,18 @@ $tags = get_terms(array(
 							<label class="radio">
 								<input type="radio" name="type" value="service" <?php checked($type, 'service'); ?>>
 								<?php _e('Services', 'wb'); ?>
+							</label>
+						</li>
+						<li>
+							<label class="radio">
+								<input type="radio" name="type" value="ai-tool" <?php checked($type, 'ai-tool'); ?>>
+								<?php _e('AI Tools', 'wb'); ?>
+							</label>
+						</li>
+						<li>
+							<label class="radio">
+								<input type="radio" name="type" value="ai-agent" <?php checked($type, 'ai-agent'); ?>>
+								<?php _e('AI Agents', 'wb'); ?>
 							</label>
 						</li>
 					</ul>
@@ -305,7 +317,7 @@ query_posts(array(
 												_e('Features', 'wb');
 												break;
 											case 'course':
-												_e('What you’ll learn', 'wb');
+												_e('What you'll learn', 'wb');
 												break;
 											default:
 												_e('Services', 'wb');
@@ -569,14 +581,14 @@ query_posts(array(
 					<img src="<?php echo WB_THEME_URL; ?>/images/compare-add.png" srcset="<?php echo WB_THEME_URL; ?>/images/compare-add@2x.png 2x" alt="<?php _e('Compare', 'wb'); ?>">
 				</div>
 				<h3 class="compare-info__title">
-					<?php _e(sprintf('You added “%s” to the comparison list.', '<span id="title"></span>'), 'wb'); ?> <br>
+					<?php _e(sprintf('You added "%s" to the comparison list.', '<span id="title"></span>'), 'wb'); ?> <br>
 					<?php _e(sprintf('You have %s items in your comparison list.', '<span class="badge-num">1</span>'), 'wb'); ?>
 				</h3>
 				<div class="compare-info__check">
 					<label>
 						<input type="checkbox">
 						<span class="compare-info__check__label">
-							<?php _e('Don’t show me this next time', 'wb'); ?>
+							<?php _e('Don't show me this next time', 'wb'); ?>
 						</span>
 					</label>
 				</div>
@@ -723,7 +735,7 @@ query_posts(array(
 									_e('Features', 'wb');
 									break;
 								case 'course':
-									_e('What you’ll learn', 'wb');
+									_e('What you'll learn', 'wb');
 									break;
 								default:
 									_e('Services', 'wb');
@@ -803,7 +815,7 @@ query_posts(array(
 											_e('Features', 'wb');
 											break;
 										case 'course':
-											_e('What you’ll learn', 'wb');
+											_e('What you'll learn', 'wb');
 											break;
 										default:
 											_e('Services', 'wb');

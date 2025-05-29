@@ -51,7 +51,7 @@ class Suggestion extends WB_Plugin {
 		$suggest = get_query_var('suggest');
 
 		if ($suggest) {
-			$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service'))) ? $_GET['type'] : 'tool';
+			$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service', 'ai-tool', 'ai-agent'))) ? $_GET['type'] : 'tool';
 			$query = isset($_GET['query']) ? esc_attr($_GET['query']) : '';
 
 			$suggestions = array();

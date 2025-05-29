@@ -9,7 +9,7 @@ class Filter extends WB_Plugin {
 			return $query;
 		}
 
-		if ($query->is_tax(array('tool-category', 'tool-tag', 'course-category', 'course-tag', 'service-category', 'service-tag', 'ai-tool-category', 'ai-agent-category')) || isset($query->query['search_page'])) {
+		if ($query->is_tax(array('tool-category', 'tool-tag', 'course-category', 'course-tag', 'service-category', 'service-tag', 'ai-tool-category', 'ai-tool-tag', 'ai-agent-category', 'ai-agent-tag')) || isset($query->query['search_page'])) {
 			$type = (isset($_GET['type']) && in_array($_GET['type'], array('tool', 'course', 'service', 'ai-tool', 'ai-agent'))) ? $_GET['type'] : 'tool';
 
 			$_query = isset($_GET['query']) ? esc_attr($_GET['query']) : '';
