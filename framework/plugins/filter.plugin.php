@@ -9,116 +9,125 @@ class Filter extends WB_Plugin {
 			return;
 		}
 
-		if (!$query->is_main_query() && !isset($query->query_vars['search_page'])) {
+		if (!$query->is_main_query()) {
 			return;
 		}
 
-		$type = isset($_GET['type']) ? $_GET['type'] : 'tool';
-		$query->set('post_type', $type);
-		$query->set('post_status', 'publish');
+		if (isset($query->query_vars['search_page'])) {
+			$type = isset($_GET['type']) ? $_GET['type'] : 'tool';
+			$query->set('post_type', $type);
+			$query->set('post_status', 'publish');
 
-		if (isset($_GET['s']) && !empty($_GET['s'])) {
-			$query->set('s', $_GET['s']);
-		}
-
-		$per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 12;
-		if ($per_page > 0) {
-			$query->set('posts_per_page', $per_page);
-		}
-
-		if (isset($_GET['sort'])) {
-			switch ($_GET['sort']) {
-				case 'alphabetical':
-					$query->set('orderby', 'title');
-					$query->set('order', 'ASC');
-					break;
-				case 'popularity':
-					$query->set('orderby', 'meta_value_num');
-					$query->set('meta_key', '_popularity');
-					$query->set('order', 'DESC');
-					break;
-				case 'price_high':
-					$query->set('orderby', 'meta_value_num');
-					$query->set('meta_key', '_amount');
-					$query->set('order', 'DESC');
-					break;
-				case 'price_low':
-					$query->set('orderby', 'meta_value_num');
-					$query->set('meta_key', '_amount');
-					$query->set('order', 'ASC');
-					break;
+			if (isset($_GET['s']) && !empty($_GET['s'])) {
+				$query->set('s', $_GET['s']);
 			}
-		}
 
-		$tax_query = array();
-		$meta_query = array();
+			$per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 12;
+			if ($per_page > 0) {
+				$query->set('posts_per_page', $per_page);
+			}
 
-		if (isset($_GET['category']) && !empty($_GET['category'])) {
-			$tax_query[] = array(
-				'taxonomy' => $type . '-category',
-				'field' => 'slug',
-				'terms' => $_GET['category']
-			);
-		}
+			if (isset($_GET['sort'])) {
+				switch ($_GET['sort']) {
+					case 'alphabetical':
+						$query->set('orderby', 'title');
+						$query->set('order', 'ASC');
+						break;
+					case 'popularity':
+						$query->set('orderby', 'meta_value_num');
+						$query->set('meta_key', '_popularity');
+						$query->set('order', 'DESC');
+						break;
+					case 'price_high':
+						$query->set('orderby', 'meta_value_num');
+						$query->set('meta_key', '_amount');
+						$query->set('order', 'DESC');
+						break;
+					case 'price_low':
+						$query->set('orderby', 'meta_value_num');
+						$query->set('meta_key', '_amount');
+						$query->set('order', 'ASC');
+						break;
+				}
+			}
 
-		if (isset($_GET['tag']) && !empty($_GET['tag'])) {
-			$tax_query[] = array(
-				'taxonomy' => $type . '-tag',
-				'field' => 'slug',
-				'terms' => $_GET['tag']
-			);
-		}
+			$tax_query = array();
+			$meta_query = array();
 
-		if (in_array($type, array('tool', 'course', 'service'))) {
-			if (isset($_GET['country']) && !empty($_GET['country'])) {
+			if (isset($_GET['category']) && !empty($_GET['category'])) {
 				$tax_query[] = array(
-					'taxonomy' => $type . '-location',
+					'taxonomy' => $type . '-category',
 					'field' => 'slug',
-					'terms' => $_GET['country']
+					'terms' => $_GET['category']
 				);
 			}
 
-			if (isset($_GET['city']) && !empty($_GET['city'])) {
+			if (isset($_GET['tag']) && !empty($_GET['tag'])) {
 				$tax_query[] = array(
-					'taxonomy' => $type . '-location',
+					'taxonomy' => $type . '-tag',
 					'field' => 'slug',
-					'terms' => $_GET['city']
+					'terms' => $_GET['tag']
 				);
 			}
-		}
 
-		if (isset($_GET['pricing_option']) && !empty($_GET['pricing_option'])) {
-			$tax_query[] = array(
-				'taxonomy' => $type . '-pricing-option',
-				'field' => 'slug',
-				'terms' => $_GET['pricing_option']
-			);
-		}
+			if (in_array($type, array('tool', 'course', 'service'))) {
+				if (isset($_GET['country']) && !empty($_GET['country'])) {
+					$tax_query[] = array(
+						'taxonomy' => $type . '-location',
+						'field' => 'slug',
+						'terms' => $_GET['country']
+					);
+				}
 
-		if (isset($_GET['price_min']) && !empty($_GET['price_min'])) {
-			$meta_query[] = array(
-				'key' => '_amount',
-				'value' => floatval($_GET['price_min']),
-				'type' => 'NUMERIC',
-				'compare' => '>='
-			);
-		}
+				if (isset($_GET['city']) && !empty($_GET['city'])) {
+					$tax_query[] = array(
+						'taxonomy' => $type . '-location',
+						'field' => 'slug',
+						'terms' => $_GET['city']
+					);
+				}
+			}
 
-		if (isset($_GET['price_max']) && !empty($_GET['price_max'])) {
-			$meta_query[] = array(
-				'key' => '_amount',
-				'value' => floatval($_GET['price_max']),
-				'type' => 'NUMERIC',
-				'compare' => '<='
-			);
-		}
+			if (isset($_GET['pricing_option']) && !empty($_GET['pricing_option'])) {
+				$tax_query[] = array(
+					'taxonomy' => $type . '-pricing-option',
+					'field' => 'slug',
+					'terms' => $_GET['pricing_option']
+				);
+			}
 
-		if (!empty($tax_query)) {
-			$query->set('tax_query', $tax_query);
-		}
+			if (isset($_GET['price_min']) && !empty($_GET['price_min'])) {
+				$meta_query[] = array(
+					'key' => '_amount',
+					'value' => floatval($_GET['price_min']),
+					'type' => 'NUMERIC',
+					'compare' => '>='
+				);
+			}
 
-		if (!empty($meta_query)) {
-			$query->set('meta_query', $meta_query);
+			if (isset($_GET['price_max']) && !empty($_GET['price_max'])) {
+				$meta_query[] = array(
+					'key' => '_amount',
+					'value' => floatval($_GET['price_max']),
+					'type' => 'NUMERIC',
+					'compare' => '<='
+				);
+			}
+
+			if (!empty($tax_query)) {
+				$query->set('tax_query', $tax_query);
+			}
+
+			if (!empty($meta_query)) {
+				$query->set('meta_query', $meta_query);
+			}
+		} else if ($query->is_tax()) {
+			$term = get_queried_object();
+			$type = str_replace(array('-category', '-tag'), '', $term->taxonomy);
+			$query->set('post_type', $type);
+			$query->set('post_status', 'publish');
+		} else if ($query->is_home() || $query->is_page()) {
+			return;
 		}
 	}
 
