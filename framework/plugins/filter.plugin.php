@@ -16,6 +16,7 @@ class Filter extends WB_Plugin {
 
 			if ($_query) {
 				$query->set('s', $_query);
+				$query->set('post_type', $type);
 			}
 
 			$per_page = (isset($_GET['per_page']) && in_array($_GET['per_page'], array('12', '24', '48', '96'))) ? $_GET['per_page'] : '12';

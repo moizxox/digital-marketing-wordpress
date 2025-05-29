@@ -154,12 +154,18 @@ $tags = get_terms(array(
 
 <?php
 
-query_posts(array(
+$args = array(
 	'post_type' => $type,
 	'posts_per_page' => $per_page,
 	'search_page' => true,
 	'paged' => get_query_var('paged') ? get_query_var('paged') : 1
-));
+);
+
+if (!empty($query)) {
+	$args['s'] = $query;
+}
+
+query_posts($args);
 
 ?>
 
@@ -317,7 +323,7 @@ query_posts(array(
 												_e('Features', 'wb');
 												break;
 											case 'course':
-												_e('What you'll learn', 'wb');
+												_e('What you\'ll learn', 'wb');
 												break;
 											default:
 												_e('Services', 'wb');
@@ -735,7 +741,7 @@ query_posts(array(
 									_e('Features', 'wb');
 									break;
 								case 'course':
-									_e('What you'll learn', 'wb');
+									_e('What you\'ll learn', 'wb');
 									break;
 								default:
 									_e('Services', 'wb');
@@ -815,7 +821,7 @@ query_posts(array(
 											_e('Features', 'wb');
 											break;
 										case 'course':
-											_e('What you'll learn', 'wb');
+											_e('What you\'ll learn', 'wb');
 											break;
 										default:
 											_e('Services', 'wb');
