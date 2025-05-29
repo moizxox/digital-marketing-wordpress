@@ -17,6 +17,7 @@ $pricing_options = get_terms(array(
 
 <div class="hero hero_category hero_center heading-bg">
 	<div class="container">
+		Hello
 		<div class="hero__inner clearfix max-w-823">
 			<h1 class="hero__title"><?php _e('AI Tools', 'wb'); ?></h1>
 			<?php if ($search_page = wb_get_page_by_template('search')) : ?>
