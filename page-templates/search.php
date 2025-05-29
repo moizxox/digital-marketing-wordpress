@@ -153,6 +153,54 @@ if (!empty($query)) {
 	$args['s'] = $query;
 }
 
+// Add tax query for categories and tags
+$tax_query = array();
+
+if (isset($_GET['category']) && !empty($_GET['category'])) {
+	$tax_query[] = array(
+		'taxonomy' => $type . '-category',
+		'field' => 'slug',
+		'terms' => $_GET['category']
+	);
+}
+
+if (isset($_GET['tag']) && !empty($_GET['tag'])) {
+	$tax_query[] = array(
+		'taxonomy' => $type . '-tag',
+		'field' => 'slug',
+		'terms' => $_GET['tag']
+	);
+}
+
+if (!empty($tax_query)) {
+	$args['tax_query'] = $tax_query;
+}
+
+// Add meta query for prices
+$meta_query = array();
+
+if (isset($_GET['price_min']) && !empty($_GET['price_min'])) {
+	$meta_query[] = array(
+		'key' => '_amount',
+		'value' => floatval($_GET['price_min']),
+		'type' => 'NUMERIC',
+		'compare' => '>='
+	);
+}
+
+if (isset($_GET['price_max']) && !empty($_GET['price_max'])) {
+	$meta_query[] = array(
+		'key' => '_amount',
+		'value' => floatval($_GET['price_max']),
+		'type' => 'NUMERIC',
+		'compare' => '<='
+	);
+}
+
+if (!empty($meta_query)) {
+	$args['meta_query'] = $meta_query;
+}
+
 query_posts($args);
 
 ?>

@@ -5,7 +5,11 @@ class Filter extends WB_Plugin {
 	private $post_type;
 
 	public function action_pre_get_posts($query) {
-		if (is_admin() || !$query->is_main_query() && !isset($query->query_vars['search_page'])) {
+		if (is_admin()) {
+			return;
+		}
+
+		if (!$query->is_main_query() && !isset($query->query_vars['search_page'])) {
 			return;
 		}
 
