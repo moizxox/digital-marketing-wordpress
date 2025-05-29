@@ -325,6 +325,12 @@ query_posts($args);
 											case 'course':
 												_e('What you\'ll learn', 'wb');
 												break;
+											case 'ai-tool':
+												_e('AI Tool Features', 'wb');
+												break;
+											case 'ai-agent':
+												_e('AI Agent Features', 'wb');
+												break;
 											default:
 												_e('Services', 'wb');
 												break;
@@ -594,7 +600,7 @@ query_posts($args);
 					<label>
 						<input type="checkbox">
 						<span class="compare-info__check__label">
-							<?php _e('Don't show me this next time', 'wb'); ?>
+							<?php _e('Don\'t show me this next time', 'wb'); ?>
 						</span>
 					</label>
 				</div>
@@ -743,6 +749,12 @@ query_posts($args);
 								case 'course':
 									_e('What you\'ll learn', 'wb');
 									break;
+								case 'ai-tool':
+									_e('AI Tool Features', 'wb');
+									break;
+								case 'ai-agent':
+									_e('AI Agent Features', 'wb');
+									break;
 								default:
 									_e('Services', 'wb');
 									break;
@@ -822,6 +834,12 @@ query_posts($args);
 											break;
 										case 'course':
 											_e('What you\'ll learn', 'wb');
+											break;
+										case 'ai-tool':
+											_e('AI Tool Features', 'wb');
+											break;
+										case 'ai-agent':
+											_e('AI Agent Features', 'wb');
 											break;
 										default:
 											_e('Services', 'wb');

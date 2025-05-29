@@ -16,33 +16,27 @@ class Filter extends WB_Plugin {
 
 			if ($_query) {
 				$query->set('s', $_query);
-				$query->set('post_type', $type);
 			}
 
-			$per_page = (isset($_GET['per_page']) && in_array($_GET['per_page'], array('12', '24', '48', '96'))) ? $_GET['per_page'] : '12';
+			$query->set('post_type', $type);
+			$query->set('post_status', 'publish');
 
+			$per_page = (isset($_GET['per_page']) && in_array($_GET['per_page'], array('12', '24', '48', '96'))) ? $_GET['per_page'] : '12';
 			$query->set('posts_per_page', $per_page);
 
 			$sort = (isset($_GET['sort']) && in_array($_GET['sort'], array('alphabetically', 'popularity', 'price-hl', 'price-lh'))) ? $_GET['sort'] : 'alphabetically';
 
-			$query->set('orderby', 'name');
-			$query->set('order', 'ASC');
-
-			if ($sort == 'popularity') {
-				$query->set('meta_key',  '_views');
+			if ($sort == 'alphabetically') {
+				$query->set('orderby', 'title');
+				$query->set('order', 'ASC');
+			} elseif ($sort == 'popularity') {
+				$query->set('meta_key', '_views');
 				$query->set('orderby', 'meta_value_num');
 				$query->set('order', 'DESC');
-			}
-
-			if (in_array($sort, array('price-hl', 'price-lh'))) {
-				$query->set('meta_key',  '_amount');
+			} elseif (in_array($sort, array('price-hl', 'price-lh'))) {
+				$query->set('meta_key', '_amount');
 				$query->set('orderby', 'meta_value_num');
-
-				if ($sort == 'price-lh') {
-					$query->set('order', 'ASC');
-				} else {
-					$query->set('order', 'DESC');
-				}
+				$query->set('order', $sort == 'price-lh' ? 'ASC' : 'DESC');
 			}
 
 			$pricing_option = isset($_GET['pricing_option']) ? (array) $_GET['pricing_option'] : array();
