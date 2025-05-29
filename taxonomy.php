@@ -28,7 +28,6 @@ $tag = isset($_GET['ftag']) ? (array) $_GET['ftag'] : array();
 
 if ($type == 'service') {
 	$pricing_options = array();
-
 	$prices = array();
 } else {
 	$pricing_options = get_terms(array(
@@ -39,11 +38,11 @@ if ($type == 'service') {
 
 	$prices = $wpdb->get_col("
 		SELECT DISTINCT wm.meta_value
-		FROM wp2_posts wp
-		INNER JOIN wp2_postmeta wm ON (wm.post_id = wp.ID AND wm.meta_key = '_amount')
-		INNER JOIN wp2_term_relationships wtr ON (wp.ID = wtr.object_id)
-		INNER JOIN wp2_term_taxonomy wtt ON (wtr.term_taxonomy_id = wtt.term_taxonomy_id)
-		AND wp.post_type = '{$type}'
+		FROM {$wpdb->posts} wp
+		INNER JOIN {$wpdb->postmeta} wm ON (wm.post_id = wp.ID AND wm.meta_key = '_amount')
+		INNER JOIN {$wpdb->term_relationships} wtr ON (wp.ID = wtr.object_id)
+		INNER JOIN {$wpdb->term_taxonomy} wtt ON (wtr.term_taxonomy_id = wtt.term_taxonomy_id)
+		WHERE wp.post_type = '{$type}'
 		AND wp.post_status = 'publish'
 		AND wtt.taxonomy = '{$term->taxonomy}'
 		AND wtt.term_id = {$term->term_id}
@@ -52,45 +51,34 @@ if ($type == 'service') {
 
 if ($prices) {
 	$prices = Filter::get_prices($prices);
-
-	/**
-	$currencies = $wpdb->get_col("
-		SELECT DISTINCT wm.meta_value
-		FROM wp2_posts wp
-		INNER JOIN wp2_postmeta wm ON (wm.post_id = wp.ID AND wm.meta_key = '_currency')
-		INNER JOIN wp2_term_relationships wtr ON (wp.ID = wtr.object_id)
-		INNER JOIN wp2_term_taxonomy wtt ON (wtr.term_taxonomy_id = wtt.term_taxonomy_id)
-		AND wp.post_type = '{$type}'
-		AND wp.post_status = 'publish'
-		AND wtt.taxonomy = '{$term->taxonomy}'
-		AND wtt.term_id = {$term->term_id}
-	");
-	*/
-
 	$currencies = array();
-
 	$currencies = array_filter($currencies);
 
 	if (!$currency) {
 		$currency = array_values($currencies);
-
 		$currency = $currency ? $currency[0] : '';
 	}
 }
 
-$countries = get_terms(array(
-	'taxonomy' => $type . '-location',
-	'parent' => 0,
-	'orderby' => 'ID',
-	'order' => 'ASC'
-));
+// Only get location terms for relevant post types
+if (in_array($type, array('tool', 'course', 'service'))) {
+	$countries = get_terms(array(
+		'taxonomy' => $type . '-location',
+		'parent' => 0,
+		'orderby' => 'ID',
+		'order' => 'ASC'
+	));
 
-$cities = get_terms(array(
-	'taxonomy' => $type . '-location',
-	'exclude_parents' => 1,
-	'orderby' => 'ID',
-	'order' => 'ASC'
-));
+	$cities = get_terms(array(
+		'taxonomy' => $type . '-location',
+		'exclude_parents' => 1,
+		'orderby' => 'ID',
+		'order' => 'ASC'
+	));
+} else {
+	$countries = array();
+	$cities = array();
+}
 
 $tags = get_terms(array(
 	'taxonomy' => $type . '-tag',
