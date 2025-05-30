@@ -325,50 +325,44 @@ get_header();
 </section>
 
 <!-- //service section  -->
-<?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?>
-	<section class="px-[5%] sm:px-[10%] pb-[10%]">
-		<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
-			Our <span class="text-[var(--primary)]">Services</span>
-		</h1>
-		<div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
-			<?php foreach ($promotion_boxes as $promotion_box) : ?>
-				<div class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4">
-					<div>
-						<?php if ($image = $promotion_box['image']) : ?>
+<!-- <?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?> -->
+<section class="px-[5%] sm:px-[10%] pb-[10%]">
+	<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
+		Our <span class="text-[var(--primary)]">Services</span>
+	</h1>
+	<div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
+		<?php foreach ($promotion_boxes as $promotion_box) : ?>
+			<div class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4">
+				<div>
+					<?php if ($image = $promotion_box['image']) : ?>
 
-							<img src="<?php echo wb_image($image, 60, 55); ?>" alt="<?php echo $promotion_box['title']; ?>">
+						<img src="<?php echo wb_image($image, 60, 55); ?>" alt="<?php echo $promotion_box['title']; ?>">
 
-						<?php endif; ?>
-						<?php if ($title = $promotion_box['title']) : ?>
-							<h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold"><?php echo $title; ?></h1>
-						<?php endif; ?>
+					<?php endif; ?>
+					<?php if ($title = $promotion_box['title']) : ?>
+						<h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold"><?php echo $title; ?></h1>
+					<?php endif; ?>
 
-						<p class="text-[#737373] mb-1">
-							<?php echo wpautop($promotion_box['description']); ?>
-						</p>
-					</div>
-
-					<a href="<?php echo $promotion_box['button_url']; ?>" class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]">
-						Explore
-						<i class="fa-solid fa-chevron-right"></i>
-					</a>
+					<p class="text-[#737373] mb-1">
+						<?php echo wpautop($promotion_box['description']); ?>
+					</p>
 				</div>
 
+				<a href="<?php echo $promotion_box['button_url']; ?>" class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]">
+					Explore
+					<i class="fa-solid fa-chevron-right"></i>
+				</a>
+			</div>
 
 
-			<?php endforeach; ?>
-		</div>
 
-	</section>
-
-<?php endif; ?>
-<!-- <?php if (is_active_sidebar('content-homepage')) : ?>
-	<div class="subscribe-wrap subscribe-wrap_main">
-		<div class="container">
-			<?php dynamic_sidebar('content-homepage'); ?>
-		</div>
+		<?php endforeach; ?>
 	</div>
-<?php endif; ?> -->
+
+</section>
+
+<!-- <?php endif; ?> -->
+
 <!-- cowl carcousel  -->
 <section class="bg-[#FF92001A] px-[5%] py-[5%] sm:px-[10%] sm:py-20">
 	<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 ">
