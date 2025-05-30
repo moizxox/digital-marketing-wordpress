@@ -187,12 +187,13 @@ function ao_defer_inline_jquery($in)
 
 function enqueue_tailwind_cdn()
 {
-	// Tailwind CDN
-	wp_enqueue_style(
+	// Tailwind CDN via script
+	wp_enqueue_script(
 		'tailwindcss',
 		'https://cdn.tailwindcss.com',
 		[],
-		null
+		null,
+		false // Load in the <head>, not footer
 	);
 }
 add_action('wp_enqueue_scripts', 'enqueue_tailwind_cdn');
