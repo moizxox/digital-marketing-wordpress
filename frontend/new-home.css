@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap'); */
 :root {
   --primary: #0f44f3;
@@ -7,11 +8,7 @@
     linear-gradient(239.04deg, #0f4bcd 0%, #000000 100%);
 }
 
-.my-gradient-background {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    linear-gradient(239.04deg, #0f4bcd 0%, #000000 100%);
-  background-repeat: no-repeat;
-}
+
 
 * {
   /* font-family: Roboto Slab; */
