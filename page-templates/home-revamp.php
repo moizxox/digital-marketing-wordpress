@@ -259,7 +259,7 @@ get_header();
 
 ?>
 <!-- hero section  -->
-<section class="overflow-hidden">
+<section class="overflow-hidden my-gradient-background">
 	<div class="absolute top-[94%] sm:top-[78.2%] text-white">
 		<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/bg-left-e1748528653547.png" alt="" />
 	</div>
@@ -268,7 +268,7 @@ get_header();
 			alt="" />
 	</div>
 	<div
-		class="xl:h-[calc(100vh-86px)] pt-8 z-50 flex-col lg:flex-row my-gradient-background px-[5%] sm:px-[10%] gap-5 lg:items-center lg:justify-between flex overflow-hidden  max-w-[1440px] mx-auto">
+		class=" z-50 flex-col lg:flex-row gap-5 lg:items-center lg:justify-between flex overflow-hidden  max-w-[1440px] mx-auto py-[120px] min-h-[calc(100vh-86px)] px-[20px] md:px-[30px]">
 		<div class=" mb-7 z-50 xl:w-[60%]">
 			<h1 class="text-white text-[30px] sm:text-[40px] leading-[33px] sm:leading-[45px] mb-1.5 font-bold">
 
