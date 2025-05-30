@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Homepage
+ * Template Name: Homepage revamp
  */
 
 if (!defined('ABSPATH')) {
