@@ -325,7 +325,7 @@ get_header();
 </section>
 
 <!-- //service section  -->
-<!-- <?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?> -->
+
 <section class="px-[5%] sm:px-[10%] pb-[10%]">
 	<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
 		Our <span class="text-[var(--primary)]">Services</span>
@@ -361,7 +361,6 @@ get_header();
 
 </section>
 
-<!-- <?php endif; ?> -->
 
 <!-- cowl carcousel  -->
 <section class="bg-[#FF92001A] px-[5%] py-[5%] sm:px-[10%] sm:py-20">
