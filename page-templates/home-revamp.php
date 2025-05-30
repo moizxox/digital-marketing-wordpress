@@ -42,6 +42,57 @@ if (($popular_terms = wp_cache_get('_popular_terms')) === false) {
 get_header();
 ?>
 
+<!-- Header -->
+<header class="flex h-[86px] items-center justify-between px-[10%] bg-[#0C2452] py-4 relative">
+    <a href="<?php echo home_url(); ?>">
+        <?php 
+        if (has_custom_logo()) {
+            the_custom_logo();
+        } else {
+            echo '<img src="' . get_template_directory_uri() . '/images/logo.png" alt="' . get_bloginfo('name') . '" class="h-10">';
+        }
+        ?>
+    </a>
+    
+    <nav class="hidden lg:block">
+        <?php
+        wp_nav_menu(array(
+            'theme_location' => 'primary',
+            'container' => false,
+            'menu_class' => 'flex gap-6 text-white',
+            'fallback_cb' => false,
+        ));
+        ?>
+    </nav>
+
+    <div class="hidden flex flex-col justify-between h-[calc(100vh-86px)] bg-[#0C2452] absolute top-full left-0 w-full p-6 text-white lg:hidden z-70" id="mob-nav">
+        <?php
+        wp_nav_menu(array(
+            'theme_location' => 'primary',
+            'container' => false,
+            'menu_class' => 'flex flex-col gap-4',
+            'fallback_cb' => false,
+        ));
+        ?>
+        <!-- Compare Button -->
+        <a href="#" class="rounded-sm bg-[#FFCC00] w-fit border p-3 flex gap-3 items-center">
+            <span class="text-[#0C2452] md:block"><?php _e('Compare', 'wb'); ?></span>
+            <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm">0</span>
+        </a>
+    </div>
+
+    <!-- Compare Button -->
+    <a href="#" class="hidden lg:flex rounded-sm bg-[#FFCC00] p-3 flex gap-3 items-center ml-4">
+        <span class="text-[#0C2452] hidden md:block"><?php _e('Compare', 'wb'); ?></span>
+        <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm">0</span>
+    </a>
+
+    <!-- Toggle Button for Mobile -->
+    <div class="lg:hidden text-white text-2xl ml-4 cursor-pointer" id="toggle-btn">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+</header>
+
 <!-- Hero Section -->
 <section>
     <div class="absolute top-[94%] sm:top-[78.2%] text-white">
