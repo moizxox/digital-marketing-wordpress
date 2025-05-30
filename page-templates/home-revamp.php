@@ -8,8 +8,9 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+
 if (!isset($_GET['test'])) {
-	get_template_part('page-templates/home-revamp');
+	get_template_part('page-templates/homepage-test');
 
 	exit;
 }
