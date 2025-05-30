@@ -11,6 +11,10 @@
 		
 		<title><?php wp_title('-', true, 'right'); ?></title>
 		<?php wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap'); ?>
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 		<?php wp_enqueue_style('font-awesome', WB_THEME_URL . '/css/font-awesome.css'); ?>
 		<?php wp_enqueue_style('style', get_stylesheet_uri()); ?>
 		<?php wp_enqueue_style('responsive', WB_THEME_URL . '/css/responsive.css'); ?>
@@ -74,6 +78,7 @@
     <i class="fa-solid fa-bars"></i>
   </div>
 </header>
+
 
 			<?php if ($compare_page) : ?>
 				<a href="<?php echo get_permalink($compare_page->ID); ?>" class="compare-fixed">
