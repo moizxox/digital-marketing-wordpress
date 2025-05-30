@@ -11,9 +11,10 @@ if (isset($_GET['__AUTH'])) {
 	wp_redirect('/wp-admin/');
 	exit;
 }
-*/
+ */
 
-function wb_after_setup_theme() {
+function wb_after_setup_theme()
+{
 	require_once dirname(__FILE__) . '/framework/wb.php';
 
 	register_nav_menu('main', __('Main Menu', 'wb'));
@@ -36,7 +37,8 @@ function wb_after_setup_theme() {
 
 add_action('after_setup_theme', 'wb_after_setup_theme');
 
-function wb_widgets_init() {
+function wb_widgets_init()
+{
 	register_sidebar(array(
 		'name' => __('Right Sidebar (Default)', 'wb'),
 		'id' => 'right',
@@ -94,7 +96,8 @@ function wb_widgets_init() {
 
 add_action('widgets_init', 'wb_widgets_init');
 
-function wb_wp_title($title, $separator) {
+function wb_wp_title($title, $separator)
+{
 	global $paged, $page;
 
 	if (is_feed()) {
@@ -116,11 +119,13 @@ function wb_wp_title($title, $separator) {
 
 add_filter('wp_title', 'wb_wp_title', 10, 2);
 
-function wb_nav_main_menu_fallback($args) {
+function wb_nav_main_menu_fallback($args)
+{
 	echo preg_replace('/<ul>/', '<ul class="main-menu-list">', wp_page_menu('echo=0'), 1);
 }
 
-function wb_get_page_by_template($page_template) {
+function wb_get_page_by_template($page_template)
+{
 	$pages = get_posts(array(
 		'posts_per_page' => 1,
 		'post_type' => 'page',
@@ -136,7 +141,8 @@ function wb_get_page_by_template($page_template) {
 	return !empty($pages) && is_array($pages) ? reset($pages) : false;
 }
 
-function wb_phpmailer_init($mailer) {
+function wb_phpmailer_init($mailer)
+{
 	$mailer->IsSMTP();
 	$mailer->Host = 'ssl://smtp.zoho.eu';
 	$mailer->Port = 465;
@@ -152,27 +158,41 @@ if (isset($_GET['mailme'])) {
 	wp_mail('algis@woobro.com', 'test', 'test');
 }
 
-function ao_defer_inline_init() {
-	if ( get_option('autoptimize_js_include_inline') != 'on' ) {
-		add_filter('autoptimize_html_after_minify','ao_defer_inline_jquery',10,1);
+function ao_defer_inline_init()
+{
+	if (get_option('autoptimize_js_include_inline') != 'on') {
+		add_filter('autoptimize_html_after_minify', 'ao_defer_inline_jquery', 10, 1);
 	}
 }
 
-add_action('plugins_loaded','ao_defer_inline_init');
+add_action('plugins_loaded', 'ao_defer_inline_init');
 
-function ao_defer_inline_jquery( $in ) {
-  if ( preg_match_all( '#<script.*>(.*)</script>#Usmi', $in, $matches, PREG_SET_ORDER ) ) {
-    foreach( $matches as $match ) {
-      if ( $match[1] !== '' && ( strpos( $match[1], 'jQuery' ) !== false || strpos( $match[1], '$' ) !== false ) ) {
-        // inline js that requires jquery, wrap deferring JS around it to defer it. 
-        $new_match = 'var aoDeferInlineJQuery=function(){'.$match[1].'}; if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", aoDeferInlineJQuery);} else {aoDeferInlineJQuery();}';
-        $in = str_replace( $match[1], $new_match, $in );
-      } else if ( $match[1] === '' && strpos( $match[0], 'src=' ) !== false && strpos( $match[0], 'defer' ) === false ) {
-        // linked non-aggregated JS, defer it.
-        $new_match = str_replace( '<script ', '<script defer ', $match[0] );
-        $in = str_replace( $match[0], $new_match, $in );
-      }
-    }
-  }
-  return $in;
+function ao_defer_inline_jquery($in)
+{
+	if (preg_match_all('#<script.*>(.*)</script>#Usmi', $in, $matches, PREG_SET_ORDER)) {
+		foreach ($matches as $match) {
+			if ($match[1] !== '' && (strpos($match[1], 'jQuery') !== false || strpos($match[1], '$') !== false)) {
+				// inline js that requires jquery, wrap deferring JS around it to defer it. 
+				$new_match = 'var aoDeferInlineJQuery=function(){' . $match[1] . '}; if (document.readyState === "loading") {document.addEventListener("DOMContentLoaded", aoDeferInlineJQuery);} else {aoDeferInlineJQuery();}';
+				$in = str_replace($match[1], $new_match, $in);
+			} else if ($match[1] === '' && strpos($match[0], 'src=') !== false && strpos($match[0], 'defer') === false) {
+				// linked non-aggregated JS, defer it.
+				$new_match = str_replace('<script ', '<script defer ', $match[0]);
+				$in = str_replace($match[0], $new_match, $in);
+			}
+		}
+	}
+	return $in;
 }
+
+function enqueue_tailwind_cdn()
+{
+	// Tailwind CDN
+	wp_enqueue_style(
+		'tailwindcss',
+		'https://cdn.tailwindcss.com',
+		[],
+		null
+	);
+}
+add_action('wp_enqueue_scripts', 'enqueue_tailwind_cdn');
