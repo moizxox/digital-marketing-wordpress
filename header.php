@@ -42,16 +42,16 @@
         <header class="flex h-[86px] items-center justify-between px-[10%] bg-[#0C2452] py-4 relative">
             <!-- Logo -->
             <!-- <a href="<?php echo esc_url(home_url('/')); ?>" class="block"> -->
-            <?php
-            if (has_custom_logo()) {
-                the_custom_logo();
-            } else {
-                echo '<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/logo.png" alt="Logo" class="h-10" />';
-            }
-            ?>
-            <!-- </a> -->
-
             <nav class="hidden lg:block">
+                <?php
+                if (has_custom_logo()) {
+                    the_custom_logo();
+                } else {
+                    echo '<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/logo.png" alt="Logo" class="h-10" />';
+                }
+                ?>
+                <!-- </a> -->
+
                 <?php
                 wp_nav_menu([
                     'theme_location' => 'main',
