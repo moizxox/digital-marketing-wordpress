@@ -8,7 +8,11 @@
     linear-gradient(239.04deg, #0f4bcd 0%, #000000 100%);
 }
 
-
+.my-gradient-background {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(239.04deg, #0f4bcd 0%, #000000 100%);
+  background-repeat: no-repeat;
+}
 
 * {
   /* font-family: Roboto Slab; */
