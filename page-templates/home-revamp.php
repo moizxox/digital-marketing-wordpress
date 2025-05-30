@@ -365,66 +365,135 @@ get_header();
 
 
 <!-- Carousel Section white bg (for prices Post types) -->
+<?php if ($featured_tool_categories) : ?>
 <section class="bg-white px-[5%] py-10 sm:px-[10%] sm:py-20">
-	<!-- Header -->
-	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
-		<div class="flex items-center gap-2">
-			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-lg font-semibold">
-				965
-			</span>
-			<h2 class="text-xl sm:text-3xl font-bold">
-				<?php _e('Digital Marketing Tools', 'wb'); ?>
-			</h2>
-		</div>
-		<div class="flex justify-end">
-			<a href="#" class="bg-[var(--primary)] text-white py-2 px-5 rounded-sm text-sm sm:text-base font-medium hover:bg-opacity-90 transition">
-				<?php _e('View All', 'wb'); ?>
-			</a>
-		</div>
-	</div>
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+        <div class="flex items-center gap-2">
+            <span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]">
+                <?php echo array_sum(array_column($featured_tool_categories, 'count')); ?>
+            </span>
+            <h1 class="text-[23px] sm:text-[40px]">
+                <?php _e('Digital Marketing Tools', 'wb'); ?>
+            </h1>
+        </div>
+        <?php if ($tools_page = wb_get_page_by_template('tools')) : ?>
+        <div class="flex justify-end">
+            <a href="<?php echo get_permalink($tools_page); ?>" class="bg-[var(--primary)] h-fit text-white py-2 px-5 rounded-sm">
+                <?php _e('View All', 'wb'); ?>
+            </a>
+        </div>
+        <?php endif; ?>
+    </div>
+    <div class="carousel-tabs tabsi">
+        <ul class="carousel-tabs-nav tabs-nav mt-5 lg:flex grid grid-cols-2 items-center gap-5">
+            <?php $i = 0; foreach ($featured_tool_categories as $featured_tool_category) : ?>
+            <li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
+                <a href="<?php echo get_term_link($featured_tool_category); ?>" 
+                   data-type="tool" 
+                   data-category="<?php echo $featured_tool_category->term_id; ?>"
+                   class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer">
+                    <?php echo $featured_tool_category->name; ?>
+                </a>
+            </li>
+            <?php $i++; endforeach; ?>
+        </ul>
+        <div class="carousel-tabs-content tabs-content">
+            <?php $i = 0; foreach ($featured_tool_categories as $featured_tool_category) : ?>
+            <div class="tabs-content-tab <?php echo ($i == 0) ? 'active_tab' : ''; ?>">
+                <?php if ($i == 0) : ?>
+                <div class="carousel-products owl-carousel mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5" 
+                     data-autoplay="false" 
+                     data-nav-text="[&quot;&lt;i class='icon icon-arrow-right'&gt;&lt;/i&gt; &quot;,&quot;&lt;i class='ficon icon-arrow-right'&gt;&lt;/i&gt;&quot;]" 
+                     data-nav="true" 
+                     data-dots="false" 
+                     data-loop="true" 
+                     data-slidespeed="200" 
+                     data-margin="54" 
+                     data-responsive="{&quot;0&quot;:{ &quot;margin&quot; : 20, &quot;items&quot;: &quot;1&quot;}, &quot;600&quot;:{&quot;margin&quot; : 20, &quot;items&quot;: &quot;2&quot;}, &quot;850&quot;:{&quot;margin&quot; : 15 , &quot;items&quot;: &quot;3&quot;}, &quot;1200&quot;:{&quot;items&quot;: &quot;4&quot;}}">
+                    <?php
+                    if (!isset($featured_tools[$featured_tool_category->term_id]) || !$featured_tools[$featured_tool_category->term_id]) {
+                        continue;
+                    }
 
-	<!-- Categories -->
-	<div class="mt-6 grid grid-cols-2 lg:flex lg:flex-wrap gap-4">
-		<?php
-		$categories = [
-			'Analytics Courses',
-			'Content Marketing Courses',
-			'Digital Marketing Courses',
-			'Ecommerce Courses',
-			'Facebook',
-			'SEO',
-			'Social Media',
-		];
-		foreach ($categories as $category) :
-		?>
-			<button class="py-2.5 px-3 rounded-sm text-sm border border-gray-300 text-[#5A6478] hover:text-[var(--primary)] transition">
-				<?= $category ?>
-			</button>
-		<?php endforeach; ?>
-	</div>
+                    $tools_args = array(
+                        'post_type' => 'tool',
+                        'posts_per_page' => 8,
+                        'post__in' => $featured_tools[$featured_tool_category->term_id]
+                    );
 
-	<!-- Products Grid -->
-	<div class="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-		<?php for ($i = 0; $i < 4; $i++) : ?>
-			<div class="bg-white border border-gray-300 shadow-md rounded-sm flex flex-col justify-between">
-				<div class="p-5 flex flex-col items-center text-center">
-					<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="Broca" class="w-24 h-24 object-contain mb-4" />
-					<h3 class="text-lg font-semibold text-[#1B1D1F] mb-2">Broca</h3>
-					<p class="text-sm text-[#5A6478] mb-4">
-						Broca uses AI to generate ad copy and content. We help you tell your story better...
-					</p>
-					<p class="text-sm text-[#1B1D1F] flex justify-center items-center gap-1">
-						<?php _e('Price from', 'wb'); ?>
-						<span class="text-xl font-bold">$49</span>
-					</p>
-				</div>
-				<a href="#" class="block text-center bg-[var(--primary)] text-white py-3 rounded-b-sm hover:bg-opacity-90 transition">
-					<?php _e('Buy Now', 'wb'); ?>
-				</a>
-			</div>
-		<?php endfor; ?>
-	</div>
+                    if ($featured_tool_categories_sort == '1') {
+                        $tools_args['orderby'] = 'name';
+                        $tools_args['order'] = 'ASC';
+                    } else if ($featured_tool_categories_sort == '2') {
+                        $tools_args['meta_query'][] = array(
+                            'key' => '_views',
+                            'type' => 'NUMERIC'
+                        );
+
+                        $tools_args['orderby'] = 'meta_value_num';
+                        $tools_args['order'] = 'DESC';
+                    }
+
+                    $tools = get_posts($tools_args);
+                    ?>
+                    <?php foreach ($tools as $tool) : ?>
+                    <div class="item">
+                        <div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+                            <?php if (has_post_thumbnail($tool)) : ?>
+                            <div class="p-4 flex flex-col items-center">
+                                <a href="<?php echo get_permalink($tool); ?>">
+                                    <?php echo get_the_post_thumbnail($tool, '480x360'); ?>
+                                </a>
+                            </div>
+                            <?php endif; ?>
+                            <div class="p-4 flex flex-col items-center">
+                                <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">
+                                    <a href="<?php echo get_permalink($tool); ?>">
+                                        <?php echo mb_strimwidth(get_the_title($tool), 0, 50, '...'); ?>
+                                    </a>
+                                </h1>
+                                <p class="text-[#5A6478] text-center text-[14px] font-normal">
+                                    <?php echo $tool->post_excerpt ? mb_strimwidth($tool->post_excerpt, 0, 180, '...') : mb_strimwidth($tool->post_content, 0, 180, '...'); ?>
+                                </p>
+                                <?php $amount = get_post_meta($tool->ID, '_amount', true); ?>
+                                <?php if ($amount != '') : ?>
+                                <h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+                                    <?php if ($amount === '0') : ?>
+                                        <?php _e('FREE', 'wb'); ?>
+                                    <?php elseif ($amount === 'Contact Vendor') : ?>
+                                        <?php _e('Contact Vendor', 'wb'); ?>
+                                    <?php else : ?>
+                                        <?php echo is_numeric($amount) ? __('Price from', 'wb') : ''; ?>
+                                        <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">
+                                            <?php echo get_post_meta($tool->ID, '_currency', true); ?><?php echo $amount; ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </h1>
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?php echo get_permalink($tool); ?>" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">
+                                <?php _e('Buy Now', 'wb'); ?>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <?php else : ?>
+                <div id="content-<?php echo $featured_tool_category->term_id; ?>"></div>
+                <?php endif; ?>
+            </div>
+            <?php $i++; endforeach; ?>
+        </div>
+        <?php if ($tools_page) : ?>
+        <div class="carousel-tabs__view-mob">
+            <a href="<?php echo get_permalink($tools_page); ?>" class="btn btn-outline-blue">
+                <?php _e('View All', 'wb'); ?>
+            </a>
+        </div>
+        <?php endif; ?>
+    </div>
 </section>
+<?php endif; ?>
 
 <!-- Carousel Section yellow bg (for Post types which dont have prices) -->
 <section class="bg-[#FF92001A] px-[5%] py-10 sm:px-[10%] sm:py-20">
