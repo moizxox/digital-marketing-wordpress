@@ -51,52 +51,54 @@
                 ?>
             </a>
 
-            <!-- Desktop Menu -->
             <nav class="hidden lg:block">
-                <?php
-                wp_nav_menu([
-                    'theme_location' => 'main',
-                    'container'      => false,
-                    'menu_class'     => 'flex gap-6 text-white',
-                    'fallback_cb'    => false
-                ]);
-                ?>
-            </nav>
-
-            <!-- Desktop Compare Button -->
-            <?php if ($compare_page = wb_get_page_by_template('compare')) : ?>
-                <a href="<?php echo get_permalink($compare_page->ID); ?>" class="hidden lg:flex rounded-sm bg-[#FFCC00] p-3 gap-3 items-center ml-4">
-                    <span class="text-[#0C2452] hidden md:block"><?php _e('Compare', 'wb'); ?></span>
-                    <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm"><?php echo count(Compare::get_ids()); ?></span>
-                </a>
-            <?php endif; ?>
-
-            <!-- Mobile Toggle Button -->
-            <div class="lg:hidden text-white text-2xl ml-4 cursor-pointer" id="toggle-btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <div class="hidden flex-col justify-between h-[calc(100vh-86px)] bg-[#0C2452] absolute top-full left-0 w-full p-6 text-white lg:hidden z-70" id="mob-nav">
-                <nav>
-                    <?php
+                < <?php
                     wp_nav_menu([
                         'theme_location' => 'main',
                         'container'      => false,
-                        'menu_class'     => 'flex flex-col gap-4',
+                        'menu_class'     => 'flex gap-6 text-white',
                         'fallback_cb'    => false
                     ]);
                     ?>
-                </nav>
+                    </nav>
+                    <div
+                        class="hidden flex flex-col justify-between h-[calc(100vh-86px)] bg-[#0C2452] absolute top-full left-0 w-full p-6 text-white lg:hidden z-70"
+                        id="mob-nav">
+                        <nav>
+                            <?php
+                            wp_nav_menu([
+                                'theme_location' => 'main',
+                                'container'      => false,
+                                'menu_class'     => 'flex flex-col gap-4',
+                                'fallback_cb'    => false
+                            ]);
+                            ?>
+                        </nav>
+                        <!-- Compare Button -->
+                        <?php if ($compare_page) : ?>
+                            <a href="<?php echo get_permalink($compare_page->ID); ?>" class="compare-fixed">
+                                <div class="compare-fixed__text"><?php _e('COMPARE', 'wb'); ?></div>
+                                <span class="badge-num"><?php echo count(Compare::get_ids()); ?></span>
+                            </a>
+                        <?php endif; ?> <a href="#" class="rounded-sm bg-[#FFCC00] w-fit border p-3 flex gap-3 items-center">
+                            <span class="text-[#0C2452] md:block">Compare</span>
+                            <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm">0</span>
+                        </a>
+                    </div>
 
-                <!-- Mobile Compare Button -->
-                <?php if ($compare_page) : ?>
-                    <a href="<?php echo get_permalink($compare_page->ID); ?>" class="rounded-sm bg-[#FFCC00] w-fit border p-3 flex gap-3 items-center">
-                        <span class="text-[#0C2452] md:block"><?php _e('Compare', 'wb'); ?></span>
-                        <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm"><?php echo count(Compare::get_ids()); ?></span>
-                    </a>
-                <?php endif; ?>
-            </div>
+                    <!-- Compare Button -->
+                    <?php if ($compare_page) : ?>
+                        <a href="<?php echo get_permalink($compare_page->ID); ?>" class="rounded-sm bg-[#FFCC00] w-fit border p-3 flex gap-3 items-center">
+                            <span class="text-[#0C2452] md:block"><?php _e('Compare', 'wb'); ?></span>
+                            <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm"><?php echo count(Compare::get_ids()); ?></span>
+                        </a>
+                    <?php endif; ?>
+
+                    <!-- Toggle Button for Mobile -->
+                    <div class="lg:hidden text-white text-2xl ml-4 cursor-pointer" id="toggle-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+
         </header>
 
         <?php if ($compare_page) : ?>
