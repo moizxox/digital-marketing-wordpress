@@ -42,8 +42,6 @@ if (($popular_terms = wp_cache_get('_popular_terms')) === false) {
 get_header();
 ?>
 
-
-
 <!-- Hero Section -->
 <section>
     <div class="absolute top-[94%] sm:top-[78.2%] text-white">
@@ -55,59 +53,70 @@ get_header();
     <div class="xl:h-[calc(100vh-86px)] pt-8 z-50 flex-col lg:flex-row my-gradient-background px-[5%] sm:px-[10%] gap-5 lg:items-center lg:justify-between flex overflow-hidden">
         <div class="text-white mb-7 z-50 xl:w-[60%]">
             <h1 class="text-[30px] sm:text-[40px] leading-[33px] sm:leading-[45px] mb-1.5 font-bold">
-                <?php _e('One Stop Shop For All Your', 'wb'); ?>
+                <?php _e('One Stop Shop For', 'wb'); ?> 
                 <span class="text-[#FFCC00]"><?php _e('Digital Marketing', 'wb'); ?></span>
                 <?php _e('Needs', 'wb'); ?>
             </h1>
-            <h2 class="text-[18px] sm:text-[22px] font-medium mb-4.75">
-                <?php _e('Search for Digital Marketing', 'wb'); ?>
-                <span class="element" data-text1="Tools" data-text2="Courses" data-text3="Services" data-loop="true" data-backdelay="3000">
-                    <?php _e('Tools', 'wb'); ?>
-                </span>
-            </h2>
-            
-            <?php if ($search_page = wb_get_page_by_template('search')) : ?>
-                <form action="<?php echo get_permalink($search_page); ?>" method="get">
-                    <div class="mb-6 w-full bg-[#FFFFFF1A] rounded-[8px] p-3 flex gap-2 justify-between items-center">
-                        <input 
-                            type="text" 
-                            name="query" 
-                            class="bg-white text-[#797979] w-[75%] px-2 sm:px-5 py-3 rounded-sm" 
-                            placeholder="<?php _e('e.g. SEO or Email Marketing', 'wb'); ?>"
-                        />
-                        <button type="submit" class="cursor-pointer bg-[#FFCC00] px-2 py-3 sm:px-5 flex gap-3 items-center rounded-sm text-[var(--primary)]">
-                            <?php _e('Search', 'wb'); ?> <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="mb-6 grid sm:flex grid-cols-2 gap-6">
-                        <div class="flex gap-2 items-center">
-                            <input class="w-5 h-5 focus:ring-[var(--primary)]" name="type" type="radio" id="tools" value="tool" checked />
-                            <label for="tools"><?php _e('Tools', 'wb'); ?></label>
+            <div class="hero-search-wrap">
+                <h3 class="text-[18px] sm:text-[22px] font-medium mb-4.75">
+                    <span class="hero-search-wrap__title__text">
+                        <?php _e('Search for Digital Marketing', 'wb'); ?>
+                    </span>
+                    <span class="element" data-text1="Tools" data-text2="Courses" data-text3="Services" data-loop="true" data-backdelay="3000">
+                        <?php _e('Tools', 'wb'); ?>
+                    </span>
+                </h3>
+                <?php if ($search_page = wb_get_page_by_template('search')) : ?>
+                    <form action="<?php echo get_permalink($search_page); ?>" method="get">
+                        <div class="mb-6 w-full bg-[#FFFFFF1A] rounded-[8px] p-3 flex gap-2 justify-between items-center">
+                            <input 
+                                type="text" 
+                                name="query" 
+                                class="bg-white text-[#797979] w-[75%] px-2 sm:px-5 py-3 rounded-sm" 
+                                placeholder="<?php _e('e.g. SEO or Email Marketing', 'wb'); ?>"
+                            />
+                            <button type="submit" class="cursor-pointer bg-[#FFCC00] px-2 py-3 sm:px-5 flex gap-3 items-center rounded-sm text-[var(--primary)]">
+                                <?php _e('SEARCH', 'wb'); ?> <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
                         </div>
-                        <div class="flex gap-2 items-center">
-                            <input name="type" class="w-5 h-5 focus:ring-[var(--primary)]" type="radio" id="services" value="service" />
-                            <label for="services"><?php _e('Services', 'wb'); ?></label>
+                        <ul class="search-filter mb-6 grid sm:flex grid-cols-2 gap-6">
+                            <li>
+                                <label class="flex gap-2 items-center">
+                                    <input type="radio" name="type" value="tool" checked class="w-5 h-5 focus:ring-[var(--primary)]">
+                                    <?php _e('Tools', 'wb'); ?>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex gap-2 items-center">
+                                    <input type="radio" name="type" value="course" class="w-5 h-5 focus:ring-[var(--primary)]">
+                                    <?php _e('Courses', 'wb'); ?>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex gap-2 items-center">
+                                    <input type="radio" name="type" value="service" class="w-5 h-5 focus:ring-[var(--primary)]">
+                                    <?php _e('Services', 'wb'); ?>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="hero-search__mob">
+                            <button type="submit" class="cursor-pointer bg-[#FFCC00] px-2 py-3 sm:px-5 flex gap-3 items-center rounded-sm text-[var(--primary)]">
+                                <?php _e('SEARCH', 'wb'); ?> <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
                         </div>
-                        <div class="flex gap-2 items-center">
-                            <input name="type" class="w-5 h-5 focus:ring-[var(--primary)]" type="radio" id="content" value="content" />
-                            <label for="content"><?php _e('Content', 'wb'); ?></label>
-                        </div>
-                        <div class="flex gap-2 items-center">
-                            <input name="type" class="w-5 h-5 focus:ring-[var(--primary)]" type="radio" id="courses" value="course" />
-                            <label for="courses"><?php _e('Courses', 'wb'); ?></label>
-                        </div>
-                    </div>
-                </form>
-            <?php endif; ?>
-
+                    </form>
+                <?php endif; ?>
+            </div>
             <?php if ($popular_terms) : ?>
-                <div class="grid md:flex grid-cols-2 gap-6">
-                    <?php foreach ($popular_terms as $popular_term) : ?>
-                        <a href="<?php echo get_term_link($popular_term); ?>" class="bg-white py-2.5 px-4 rounded-xl sm:rounded-3xl text-[13px] text-[var(--primary)] cursor-pointer">
-                            <?php echo $popular_term->name; ?>
-                        </a>
-                    <?php endforeach; ?>
+                <div class="tags hero-tags">
+                    <div class="tags-label"><?php _e('Popular', 'wb'); ?>:</div>
+                    <div class="grid md:flex grid-cols-2 gap-6">
+                        <?php foreach ($popular_terms as $popular_term) : ?>
+                            <a href="<?php echo get_term_link($popular_term); ?>" class="bg-white py-2.5 px-4 rounded-xl sm:rounded-3xl text-[13px] text-[var(--primary)] cursor-pointer">
+                                <?php echo $popular_term->name; ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
