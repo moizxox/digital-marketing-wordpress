@@ -9,12 +9,6 @@ if (!defined('ABSPATH')) {
 }
 
 
-// if (!isset($_GET['test'])) {
-// 	get_template_part('page-templates/homepage-test');
-
-// 	exit;
-// }
-
 wp_enqueue_script('typed', WB_THEME_URL . '/js/typed.js', array('main'));
 wp_enqueue_script('owl.carousel', WB_THEME_URL . '/js/owl.carousel.js', array('typed'));
 
@@ -259,11 +253,11 @@ get_header();
 
 ?>
 <!-- hero section  -->
-<section class="overflow-hidden my-gradient-background">
-	<div class="absolute top-[94%] sm:top-[78.2%] text-white">
+<section class="overflow-hidden my-gradient-background relative">
+	<div class="absolute bottom-0 left-0 text-white">
 		<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/bg-left-e1748528653547.png" alt="" />
 	</div>
-	<div class="absolute h-[calc(100vh-100px)] right-[0%] top-[90px] text-white">
+	<div class="absolute right-[0%] top-[-60px] text-white">
 		<img class="h-[100%]" src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/bg-right.png"
 			alt="" />
 	</div>
@@ -333,44 +327,50 @@ get_header();
 
 
 <!-- //service section  -->
-<!-- <?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?> -->
-<section class="px-[5%] sm:px-[10%] pb-[10%]">
-	<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
-		Our <span class="text-[var(--primary)]">Services</span>
-	</h1>
-	<div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
-		<?php foreach ($promotion_boxes as $promotion_box) : ?>
-			<div class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4">
-				<div>
-					<?php if ($image = $promotion_box['image']) : ?>
+<?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?>
+	<section class="px-[5%] sm:px-[10%] pb-[10%]">
+		<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
+			Our <span class="text-[var(--primary)]">Services</span>
+		</h1>
+		<div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
+			<?php foreach ($promotion_boxes as $promotion_box) : ?>
+				<div class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4">
+					<div>
+						<?php if ($image = $promotion_box['image']) : ?>
 
-						<img src="<?php echo wb_image($image, 60, 55); ?>" alt="<?php echo $promotion_box['title']; ?>">
+							<img src="<?php echo wb_image($image, 60, 55); ?>" alt="<?php echo $promotion_box['title']; ?>">
 
-					<?php endif; ?>
-					<?php if ($title = $promotion_box['title']) : ?>
-						<h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold"><?php echo $title; ?></h1>
-					<?php endif; ?>
+						<?php endif; ?>
+						<?php if ($title = $promotion_box['title']) : ?>
+							<h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold"><?php echo $title; ?></h1>
+						<?php endif; ?>
 
-					<p class="text-[#737373] mb-1">
-						<?php echo wpautop($promotion_box['description']); ?>
-					</p>
+						<p class="text-[#737373] mb-1">
+							<?php echo wpautop($promotion_box['description']); ?>
+						</p>
+					</div>
+
+					<a href="<?php echo $promotion_box['button_url']; ?>" class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]">
+						Explore
+						<i class="fa-solid fa-chevron-right"></i>
+					</a>
 				</div>
 
-				<a href="<?php echo $promotion_box['button_url']; ?>" class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]">
-					Explore
-					<i class="fa-solid fa-chevron-right"></i>
-				</a>
-			</div>
 
 
+			<?php endforeach; ?>
+		</div>
 
-		<?php endforeach; ?>
+	</section>
+
+<?php endif; ?>
+<!-- <?php if (is_active_sidebar('content-homepage')) : ?>
+	<div class="subscribe-wrap subscribe-wrap_main">
+		<div class="container">
+			<?php dynamic_sidebar('content-homepage'); ?>
+		</div>
 	</div>
-
-</section>
-
-<!-- <?php endif; ?> -->
-
+<?php endif; ?> -->
 <!-- cowl carcousel  -->
 <section class="bg-[#FF92001A] px-[5%] py-[5%] sm:px-[10%] sm:py-20">
 	<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 ">
@@ -390,38 +390,171 @@ get_header();
 		<?php $i = 0;
 		foreach ($featured_tool_categories as $featured_tool_category) : ?>
 			<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
-				Content Marketing Tools
+				<?php echo $featured_tool_category->name; ?>
 			</button>
-			$featured_tool_category) : ?>
-			<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
-				<a href="<?php echo get_term_link($featured_tool_category); ?>" class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer" data-type="tool" data-category="<?php echo $featured_tool_category->term_id; ?>">
-					<?php echo $featured_tool_category->name; ?>
-				</a>
-			</li>
 		<?php $i++;
 		endforeach; ?>
+	</div>
+	<div class="mt-5 owl-carousel" data-autoplay="false" data-nav-text="[&quot;&lt;i class='icon icon-arrow-right'&gt;&lt;/i&gt; &quot;,&quot;&lt;i class='ficon icon-arrow-right'&gt;&lt;/i&gt;&quot;]" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="200" data-margin="20" data-responsive="{&quot;0&quot;:{ &quot;margin&quot; : 20, &quot;items&quot;: &quot;1&quot;}, &quot;600&quot;:{&quot;margin&quot; : 20, &quot;items&quot;: &quot;2&quot;}, &quot;850&quot;:{&quot;margin&quot; : 15 , &quot;items&quot;: &quot;3&quot;}, &quot;1200&quot;:{&quot;items&quot;: &quot;4&quot;}}">
+		<?php
+		if (isset($featured_tools[$featured_tool_category->term_id])) {
+			$posts_args = array(
+				'post_type' => 'tool',
+				'posts_per_page' => 8,
+				'post__in' => $featured_tools[$featured_tool_category->term_id]
+			);
 
+			if ($featured_tool_categories_sort == '1') {
+				$posts_args['orderby'] = 'name';
+				$posts_args['order'] = 'ASC';
+			} else if ($featured_tool_categories_sort == '2') {
+				$posts_args['meta_query'][] = array(
+					'key' => '_views',
+					'type' => 'NUMERIC'
+				);
+				$posts_args['orderby'] = 'meta_value_num';
+				$posts_args['order'] = 'DESC';
+			}
+
+			$posts = get_posts($posts_args);
+
+			foreach ($posts as $post) : ?>
+				<div class="item">
+					<div class="bg-white rounded-sm">
+						<div class="p-4 flex flex-col items-center">
+							<?php if (has_post_thumbnail($post)) : ?>
+								<?php echo get_the_post_thumbnail($post, '480x360'); ?>
+							<?php endif; ?>
+							<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">
+								<?php echo mb_strimwidth(get_the_title($post), 0, 50, '...'); ?>
+							</h1>
+							<p class="text-[#5A6478] text-center text-[14px] font-normal">
+								<?php echo mb_strimwidth($post->post_excerpt ? $post->post_excerpt : $post->post_content, 0, 180, '...'); ?>
+							</p>
+							<?php $amount = get_post_meta($post->ID, '_amount', true); ?>
+							<?php if ($amount != '') : ?>
+								<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+									<?php if ($amount === '0') : ?>
+										<?php _e('FREE', 'wb'); ?>
+									<?php elseif ($amount === 'Contact Vendor') : ?>
+										<?php _e('Contact Vendor', 'wb'); ?>
+									<?php else : ?>
+										<?php echo is_numeric($amount) ? __('Price from', 'wb') : ''; ?>
+										<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">
+											<?php echo get_post_meta($post->ID, '_currency', true); ?><?php echo $amount; ?>
+										</span>
+									<?php endif; ?>
+								</h1>
+							<?php endif; ?>
+						</div>
+						<a href="<?php echo get_permalink($post); ?>" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">
+							<?php _e('Buy Now', 'wb'); ?>
+						</a>
+					</div>
+				</div>
+		<?php endforeach;
+		} ?>
+	</div>
+</section>
+
+<!-- Carousel Section white bg (for prices Post types) -->
+<section class="bg-white px-[5%] py-10 sm:px-[10%] sm:py-20">
+	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+		<div class="flex items-center gap-2">
+			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]">965</span>
+			<h1 class="text-[23px] sm:text-[40px]">
+				Digital Marketing <span class="text-[var(--primary)]">Courses</span>
+			</h1>
+		</div>
+		<div class="flex justify-end">
+			<button class="bg-[var(--primary)] h-fit text-white py-2 px-5 rounded-sm">
+				View All
+			</button>
+		</div>
+	</div>
+	<div class="mt-5 lg:flex grid grid-cols-2 items-center gap-5">
+		<button class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer">
+			Analytics Courses
+		</button>
+		<button class="py-2.5 px-3 rounded-sm text-[12px] text-[#5A6478] border border-[#00000033] cursor-pointer">
+			Content Marketing Courses
+		</button>
+		<button class="py-2.5 px-3 rounded-sm text-[12px] text-[#5A6478] border border-[#00000033] cursor-pointer">
+			Digital Marketing Courses
+		</button>
+		<button class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer">
+			Ecommerce Courses
+		</button>
+		<button class="py-2.5 px-3 rounded-sm border border-[#00000033] text-[14px] text-[#5A6478] cursor-pointer">
+			Facebook
+		</button>
+		<button class="py-2.5 px-3 rounded-sm text-[14px] border border-[#00000033] text-[#5A6478] cursor-pointer">
+			SEO
+		</button>
+		<button class="py-2.5 px-3 rounded-sm text-[14px] border border-[#00000033] text-[#5A6478] cursor-pointer">
+			Social Media
+		</button>
 	</div>
 	<div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
-		<?php $i = 0;
-		foreach ($featured_tool_categories as $featured_tool_category) : ?>
-			<div class="bg-white rounded-sm">
-				<div class="p-4 flex flex-col items-center">
-					<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-					<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-					<p class="text-[#5A6478] text-center text-[14px] font-normal">
-						Broca - We help you tell your story better Broca uses AI to generate ad copy and
-						content Whether ...
-					</p>
-					<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-						Price from
-						<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-					</h1>
-				</div>
-				<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
 			</div>
-		<?php $i++;
-		endforeach; ?>
-
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
 	</div>
 </section>

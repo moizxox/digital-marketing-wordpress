@@ -109,7 +109,7 @@ if (isset($_GET['type']) && isset($_GET['category'])) {
 		exit;
 	}
 
-	?>
+?>
 	<div class="carousel-products owl-carousel" data-autoplay="false" data-nav-text="[&quot;&lt;i class='icon icon-arrow-right'&gt;&lt;/i&gt; &quot;,&quot;&lt;i class='ficon icon-arrow-right'&gt;&lt;/i&gt;&quot;]" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="200" data-margin="54" data-responsive="{&quot;0&quot;:{ &quot;margin&quot; : 20, &quot;items&quot;: &quot;1&quot;}, &quot;600&quot;:{&quot;margin&quot; : 20, &quot;items&quot;: &quot;2&quot;}, &quot;850&quot;:{&quot;margin&quot; : 15 , &quot;items&quot;: &quot;3&quot;}, &quot;1200&quot;:{&quot;items&quot;: &quot;4&quot;}}">
 		<?php
 
@@ -249,7 +249,7 @@ if (isset($_GET['type']) && isset($_GET['category'])) {
 			</div>
 		<?php endforeach; ?>
 	</div>
-	<?php
+<?php
 
 	exit;
 }
@@ -404,23 +404,26 @@ get_header();
 						</h2>
 					</div>
 					<?php if ($tools_page = wb_get_page_by_template('tools')) : ?>
-						<a href="<?php echo get_permalink($tools_page); ?>" class="btn btn-outline-blue carousel-tabs__view">
+						<a <?php _e('Digital Marketing Tools', 'wb'); ?>" class="btn btn-outline-blue carousel-tabs__view">
 							<?php _e('View All', 'wb'); ?>
 						</a>
 					<?php endif; ?>
 				</div>
 				<div class="carousel-tabs tabsi">
 					<ul class="carousel-tabs-nav tabs-nav">
-						<?php $i = 0; foreach ($featured_tool_categories as $featured_tool_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_tool_categories as $featured_tool_category) : ?>
 							<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
 								<a href="<?php echo get_term_link($featured_tool_category); ?>" data-type="tool" data-category="<?php echo $featured_tool_category->term_id; ?>">
 									<?php echo $featured_tool_category->name; ?>
 								</a>
 							</li>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</ul>
 					<div class="carousel-tabs-content tabs-content">
-						<?php $i = 0; foreach ($featured_tool_categories as $featured_tool_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_tool_categories as $featured_tool_category) : ?>
 							<div class="tabs-content-tab <?php echo ($i == 0) ? 'active_tab' : ''; ?>">
 								<?php if ($i == 0) : ?>
 									<div class="carousel-products owl-carousel" data-autoplay="false" data-nav-text="[&quot;&lt;i class='icon icon-arrow-right'&gt;&lt;/i&gt; &quot;,&quot;&lt;i class='ficon icon-arrow-right'&gt;&lt;/i&gt;&quot;]" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="200" data-margin="54" data-responsive="{&quot;0&quot;:{ &quot;margin&quot; : 20, &quot;items&quot;: &quot;1&quot;}, &quot;600&quot;:{&quot;margin&quot; : 20, &quot;items&quot;: &quot;2&quot;}, &quot;850&quot;:{&quot;margin&quot; : 15 , &quot;items&quot;: &quot;3&quot;}, &quot;1200&quot;:{&quot;items&quot;: &quot;4&quot;}}">
@@ -492,7 +495,8 @@ get_header();
 									<div id="content-<?php echo $featured_tool_category->term_id; ?>"></div>
 								<?php endif; ?>
 							</div>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</div>
 					<?php if ($tools_page) : ?>
 						<div class="carousel-tabs__view-mob">
@@ -511,16 +515,19 @@ get_header();
 			<div class="container">
 				<div class="carousel-tabs tabsi">
 					<ul class="carousel-tabs-nav tabs-nav">
-						<?php $i = 0; foreach ($featured_tool_categories_2 as $featured_tool_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_tool_categories_2 as $featured_tool_category) : ?>
 							<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
 								<a href="<?php echo get_term_link($featured_tool_category); ?>" data-type="tool" data-category="<?php echo $featured_tool_category->term_id; ?>">
 									<?php echo $featured_tool_category->name; ?>
 								</a>
 							</li>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</ul>
 					<div class="carousel-tabs-content tabs-content">
-						<?php $i = 0; foreach ($featured_tool_categories_2 as $featured_tool_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_tool_categories_2 as $featured_tool_category) : ?>
 							<div class="tabs-content-tab <?php echo ($i == 0) ? 'active_tab' : ''; ?>">
 								<?php if (isset($featured_tools_2[$featured_tool_category->term_id]) && $featured_tools_2[$featured_tool_category->term_id]) : ?>
 									<?php if ($i == 0) : ?>
@@ -590,7 +597,8 @@ get_header();
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</div>
 					<?php if ($tools_page) : ?>
 						<div class="carousel-tabs__view-mob">
@@ -608,16 +616,19 @@ get_header();
 			<div class="container">
 				<div class="carousel-tabs tabsi">
 					<ul class="carousel-tabs-nav tabs-nav">
-						<?php $i = 0; foreach ($featured_tool_categories_3 as $featured_tool_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_tool_categories_3 as $featured_tool_category) : ?>
 							<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
 								<a href="<?php echo get_term_link($featured_tool_category); ?>" data-type="tool" data-category="<?php echo $featured_tool_category->term_id; ?>">
 									<?php echo $featured_tool_category->name; ?>
 								</a>
 							</li>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</ul>
 					<div class="carousel-tabs-content tabs-content">
-						<?php $i = 0; foreach ($featured_tool_categories_3 as $featured_tool_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_tool_categories_3 as $featured_tool_category) : ?>
 							<div class="tabs-content-tab <?php echo ($i == 0) ? 'active_tab' : ''; ?>">
 								<?php if (isset($featured_tools_3[$featured_tool_category->term_id]) && $featured_tools_3[$featured_tool_category->term_id]) : ?>
 									<?php if ($i == 0) : ?>
@@ -687,7 +698,8 @@ get_header();
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</div>
 					<?php if ($tools_page) : ?>
 						<div class="carousel-tabs__view-mob">
@@ -721,16 +733,19 @@ get_header();
 				</div>
 				<div class="carousel-tabs tabsi">
 					<ul class="carousel-tabs-nav tabs-nav">
-						<?php $i = 0; foreach ($featured_course_categories as $featured_course_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_course_categories as $featured_course_category) : ?>
 							<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
 								<a href="<?php echo get_term_link($featured_course_category); ?>" data-type="course" data-category="<?php echo $featured_course_category->term_id; ?>">
 									<?php echo $featured_course_category->name; ?>
 								</a>
 							</li>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</ul>
 					<div class="carousel-tabs-content tabs-content">
-						<?php $i = 0; foreach ($featured_course_categories as $featured_course_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_course_categories as $featured_course_category) : ?>
 							<div class="tabs-content-tab <?php echo ($i == 0) ? 'active_tab' : ''; ?>">
 								<?php if ($i == 0) : ?>
 									<div class="carousel-products owl-carousel" data-autoplay="false" data-nav-text="[&quot;&lt;i class='icon icon-arrow-right'&gt;&lt;/i&gt; &quot;,&quot;&lt;i class='ficon icon-arrow-right'&gt;&lt;/i&gt;&quot;]" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="200" data-margin="54" data-responsive="{&quot;0&quot;:{ &quot;margin&quot; : 20, &quot;items&quot;: &quot;1&quot;}, &quot;600&quot;:{&quot;margin&quot; : 20, &quot;items&quot;: &quot;2&quot;}, &quot;850&quot;:{&quot;margin&quot; : 15 , &quot;items&quot;: &quot;3&quot;}, &quot;1200&quot;:{&quot;items&quot;: &quot;4&quot;}}">
@@ -802,7 +817,8 @@ get_header();
 									<div id="content-<?php echo $featured_course_category->term_id; ?>"></div>
 								<?php endif; ?>
 							</div>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</div>
 					<?php if ($courses_page) : ?>
 						<div class="carousel-tabs__view-mob">
@@ -835,16 +851,19 @@ get_header();
 				</div>
 				<div class="carousel-tabs tabsi">
 					<ul class="carousel-tabs-nav tabs-nav">
-						<?php $i = 0; foreach ($featured_service_categories as $featured_service_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_service_categories as $featured_service_category) : ?>
 							<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
 								<a href="<?php echo get_term_link($featured_service_category); ?>" data-type="service" data-category="<?php echo $featured_course_category->term_id; ?>">
 									<?php echo $featured_service_category->name; ?>
 								</a>
 							</li>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</ul>
 					<div class="carousel-tabs-content tabs-content">
-						<?php $i = 0; foreach ($featured_service_categories as $featured_service_category) : ?>
+						<?php $i = 0;
+						foreach ($featured_service_categories as $featured_service_category) : ?>
 							<div class="tabs-content-tab <?php echo ($i == 0) ? 'active_tab' : ''; ?>">
 								<div class="carousel-products owl-carousel" data-autoplay="false" data-nav-text="[&quot;&lt;i class='icon icon-arrow-right'&gt;&lt;/i&gt; &quot;,&quot;&lt;i class='ficon icon-arrow-right'&gt;&lt;/i&gt;&quot;]" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="200" data-margin="54" data-responsive="{&quot;0&quot;:{ &quot;margin&quot; : 20, &quot;items&quot;: &quot;1&quot;}, &quot;600&quot;:{&quot;margin&quot; : 20, &quot;items&quot;: &quot;2&quot;}, &quot;850&quot;:{&quot;margin&quot; : 15 , &quot;items&quot;: &quot;3&quot;}, &quot;1200&quot;:{&quot;items&quot;: &quot;4&quot;}}">
 									<?php
@@ -912,7 +931,8 @@ get_header();
 									<?php endforeach; ?>
 								</div>
 							</div>
-						<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</div>
 					<?php if ($services_page) : ?>
 						<div class="carousel-tabs__view-mob">
@@ -1448,7 +1468,7 @@ get_header();
 		</div>
 	<?php endif; ?>
 </div>
-*/ ?>
+ */ ?>
 
 <?php if ($promotion_text_description = get_post_meta($post->ID, '_promotion_text_description', true)) : ?>
 	<div class="works-about-wrap">
