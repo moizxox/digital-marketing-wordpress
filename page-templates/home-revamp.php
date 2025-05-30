@@ -259,7 +259,7 @@ get_header();
 
 ?>
 <!-- hero section  -->
-<section>
+<section style="overflow: hidden;">
 	<div class="absolute top-[94%] sm:top-[78.2%] text-white">
 		<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/bg-left-e1748528653547.png" alt="" />
 	</div>
