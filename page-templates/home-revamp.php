@@ -326,146 +326,106 @@ get_header();
 
 <!-- //service section  -->
 
-<!-- <?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?> -->
-<section class="px-[5%] sm:px-[10%] pb-[10%]">
-	<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
-		Our <span class="text-[var(--primary)]">Services</span>
-	</h1>
-	<div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
-		<?php foreach ($promotion_boxes as $promotion_box) : ?>
-			<div class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4">
-				<div>
-					<?php if ($image = $promotion_box['image']) : ?>
+<?php if ($promotion_boxes = get_post_meta($post->ID, '_promotion_boxes', true)) : ?>
+	<section class="px-[5%] sm:px-[10%] pb-[10%]">
+		<h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
+			Our <span class="text-[var(--primary)]">Services</span>
+		</h1>
+		<div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
+			<?php foreach ($promotion_boxes as $promotion_box) : ?>
+				<div class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4">
+					<div>
+						<?php if ($image = $promotion_box['image']) : ?>
 
-						<img src="<?php echo wb_image($image, 60, 55); ?>" alt="<?php echo $promotion_box['title']; ?>">
+							<img src="<?php echo wb_image($image, 60, 55); ?>" alt="<?php echo $promotion_box['title']; ?>">
 
-					<?php endif; ?>
-					<?php if ($title = $promotion_box['title']) : ?>
-						<h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold"><?php echo $title; ?></h1>
-					<?php endif; ?>
+						<?php endif; ?>
+						<?php if ($title = $promotion_box['title']) : ?>
+							<h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold"><?php echo $title; ?></h1>
+						<?php endif; ?>
 
-					<p class="text-[#737373] mb-1">
-						<?php echo wpautop($promotion_box['description']); ?>
-					</p>
+						<p class="text-[#737373] mb-1">
+							<?php echo wpautop($promotion_box['description']); ?>
+						</p>
+					</div>
+
+					<a href="<?php echo $promotion_box['button_url']; ?>" class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]">
+						Explore
+						<i class="fa-solid fa-chevron-right"></i>
+					</a>
 				</div>
 
-				<a href="<?php echo $promotion_box['button_url']; ?>" class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]">
-					Explore
-					<i class="fa-solid fa-chevron-right"></i>
-				</a>
-			</div>
 
 
+			<?php endforeach; ?>
+		</div>
 
-		<?php endforeach; ?>
-	</div>
-
-</section>
-
-<!-- <?php endif; ?> -->
+	</section>
+<?php endif; ?>
 
 
 <!-- Carousel Section white bg (for prices Post types) -->
 <section class="bg-white px-[5%] py-10 sm:px-[10%] sm:py-20">
+	<!-- Header -->
 	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
 		<div class="flex items-center gap-2">
-			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]">965</span>
-			<h1 class="text-[23px] sm:text-[40px]">
-				Digital Marketing <span class="text-[var(--primary)]">Courses</span>
-			</h1>
+			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-lg font-semibold">
+				965
+			</span>
+			<h2 class="text-xl sm:text-3xl font-bold">
+				<?php _e('Digital Marketing Tools', 'wb'); ?>
+			</h2>
 		</div>
 		<div class="flex justify-end">
-			<button class="bg-[var(--primary)] h-fit text-white py-2 px-5 rounded-sm">
-				View All
+			<a href="#" class="bg-[var(--primary)] text-white py-2 px-5 rounded-sm text-sm sm:text-base font-medium hover:bg-opacity-90 transition">
+				<?php _e('View All', 'wb'); ?>
+			</a>
+		</div>
+	</div>
+
+	<!-- Categories -->
+	<div class="mt-6 grid grid-cols-2 lg:flex lg:flex-wrap gap-4">
+		<?php
+		$categories = [
+			'Analytics Courses',
+			'Content Marketing Courses',
+			'Digital Marketing Courses',
+			'Ecommerce Courses',
+			'Facebook',
+			'SEO',
+			'Social Media',
+		];
+		foreach ($categories as $category) :
+		?>
+			<button class="py-2.5 px-3 rounded-sm text-sm border border-gray-300 text-[#5A6478] hover:text-[var(--primary)] transition">
+				<?= $category ?>
 			</button>
-		</div>
+		<?php endforeach; ?>
 	</div>
-	<div class="mt-5 lg:flex grid grid-cols-2 items-center gap-5">
-		<button class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer">
-			Analytics Courses
-		</button>
-		<button class="py-2.5 px-3 rounded-sm text-[12px] text-[#5A6478] border border-[#00000033] cursor-pointer">
-			Content Marketing Courses
-		</button>
-		<button class="py-2.5 px-3 rounded-sm text-[12px] text-[#5A6478] border border-[#00000033] cursor-pointer">
-			Digital Marketing Courses
-		</button>
-		<button class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer">
-			Ecommerce Courses
-		</button>
-		<button class="py-2.5 px-3 rounded-sm border border-[#00000033] text-[14px] text-[#5A6478] cursor-pointer">
-			Facebook
-		</button>
-		<button class="py-2.5 px-3 rounded-sm text-[14px] border border-[#00000033] text-[#5A6478] cursor-pointer">
-			SEO
-		</button>
-		<button class="py-2.5 px-3 rounded-sm text-[14px] border border-[#00000033] text-[#5A6478] cursor-pointer">
-			Social Media
-		</button>
-	</div>
-	<div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
-		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
+
+	<!-- Products Grid -->
+	<div class="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+		<?php for ($i = 0; $i < 4; $i++) : ?>
+			<div class="bg-white border border-gray-300 shadow-md rounded-sm flex flex-col justify-between">
+				<div class="p-5 flex flex-col items-center text-center">
+					<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="Broca" class="w-24 h-24 object-contain mb-4" />
+					<h3 class="text-lg font-semibold text-[#1B1D1F] mb-2">Broca</h3>
+					<p class="text-sm text-[#5A6478] mb-4">
+						Broca uses AI to generate ad copy and content. We help you tell your story better...
+					</p>
+					<p class="text-sm text-[#1B1D1F] flex justify-center items-center gap-1">
+						<?php _e('Price from', 'wb'); ?>
+						<span class="text-xl font-bold">$49</span>
+					</p>
+				</div>
+				<a href="#" class="block text-center bg-[var(--primary)] text-white py-3 rounded-b-sm hover:bg-opacity-90 transition">
+					<?php _e('Buy Now', 'wb'); ?>
+				</a>
 			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
-		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
-			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
-		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
-			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
-		<div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
-			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
+		<?php endfor; ?>
 	</div>
 </section>
+
 <!-- Carousel Section yellow bg (for Post types which dont have prices) -->
 <section class="bg-[#FF92001A] px-[5%] py-10 sm:px-[10%] sm:py-20">
 	<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
