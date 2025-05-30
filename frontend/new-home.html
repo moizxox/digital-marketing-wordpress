@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./new-home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body>
+    <header class="flex h-[86px] items-center justify-between px-[10%] bg-[#0C2452] py-4 relative">
+      <img
+        src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/logo.png"
+        alt="Logo"
+        class="h-10"
+      />
+      <nav class="hidden lg:block">
+        <ul class="flex gap-6 text-white">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Tools</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Content</a></li>
+          <li><a href="#">Explore By Features</a></li>
+        </ul>
+      </nav>
+      <div
+        class="hidden flex flex-col justify-between h-[calc(100vh-86px)] bg-[#0C2452] absolute top-full left-0 w-full p-6 text-white lg:hidden z-70"
+        id="mob-nav"
+      >
+        <nav>
+          <ul class="flex flex-col gap-4">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tools</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Content</a></li>
+            <li><a href="#">Explore By Features</a></li>
+          </ul>
+        </nav>
+        <!-- Compare Button -->
+        <a href="#" class="rounded-sm bg-[#FFCC00] w-fit border p-3 flex gap-3 items-center">
+          <span class="text-[#0C2452] md:block">Compare</span>
+          <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm">0</span>
+        </a>
+      </div>
+
+      <!-- Compare Button -->
+      <a href="#" class="hidden lg:flex rounded-sm bg-[#FFCC00] p-3 flex gap-3 items-center ml-4">
+        <span class="text-[#0C2452] hidden md:block">Compare</span>
+        <span class="rounded-sm bg-[#0C2452] px-2 py-0.5 text-white text-sm">0</span>
+      </a>
+
+      <!-- Toggle Button for Mobile -->
+      <div class="lg:hidden text-white text-2xl ml-4 cursor-pointer" id="toggle-btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </header>
+    <section>
+      <div class="absolute top-[94%] sm:top-[78.2%] text-white">
+        <img
+          src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/bg-left-e1748528653547.png"
+          alt=""
+        />
+      </div>
+      <div class="absolute h-[calc(100vh-100px)] right-[0%] top-[90px] text-white">
+        <img
+          class="h-[100%]"
+          src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/bg-right.png"
+          alt=""
+        />
+      </div>
+      <div
+        class="xl:h-[calc(100vh-86px)] pt-8 z-50 flex-col lg:flex-row my-gradient-background px-[5%] sm:px-[10%] gap-5 lg:items-center lg:justify-between flex overflow-hidden"
+      >
+        <div class="text-white mb-7 z-50 xl:w-[60%]">
+          <h1 class="text-[30px] sm:text-[40px] leading-[33px] sm:leading-[45px] mb-1.5 font-bold">
+            One Stop Shop For All Your
+            <span class="text-[#FFCC00]">Digital Marketing</span> Needs
+          </h1>
+          <h2 class="text-[18px] sm:text-[22px] font-medium mb-4.75">
+            Search for Digital Marketing Courses|
+          </h2>
+          <div
+            class="mb-6 w-full bg-[#FFFFFF1A] rounded-[8px] p-3 flex gap-2 justify-between items-center"
+          >
+            <input
+              class="bg-white text-[#797979] w-[75%] px-2 sm:px-5 py-3  rounded-sm"
+              placeholder="e.g. SEO or Email Marketing"
+              type="text"
+            />
+            <button
+              class="cursor-pointer bg-[#FFCC00] px-2 py-3 sm:px-5 flex gap-3 items-center rounded-sm text-[var(--primary)]"
+            >
+              Search <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <div class="mb-6 grid sm:flex grid-cols-2 gap-6">
+            <div class="flex gap-2 items-center">
+              <input
+                class="w-5 h-5 focus:ring-[var(--primary)]"
+                name="radio"
+                type="radio"
+                id="tools"
+              /><label for="tools"> Tools</label>
+            </div>
+            <div class="flex gap-2 items-center">
+              <input
+                name="radio"
+                class="w-5 h-5 focus:ring-[var(--primary)]"
+                type="radio"
+                id="services"
+              /><label for="services"> Services</label>
+            </div>
+            <div class="flex gap-2 items-center">
+              <input
+                name="radio"
+                class="w-5 h-5 focus:ring-[var(--primary)]"
+                type="radio"
+                id="content"
+              /><label for="content"> Content</label>
+            </div>
+            <div class="flex gap-2 items-center">
+              <input
+                name="radio"
+                class="w-5 h-5 focus:ring-[var(--primary)]"
+                type="radio"
+                id="courses"
+              /><label for="courses"> Courses</label>
+            </div>
+          </div>
+          <div class="grid  md:flex grid-cols-2 gap-6">
+            <button
+              class="bg-white py-2.5 px-4 rounded-xl sm:rounded-3xl text-[13px] text-[var(--primary)] cursor-pointer"
+            >
+              Digital Marketing Tools
+            </button>
+            <button
+              class="bg-white py-2.5 px-4 rounded-xl sm:rounded-3xl text-[13px] text-[var(--primary)] cursor-pointer"
+            >
+              Web Development
+            </button>
+            <button
+              class="bg-white py-2.5 px-4 rounded-xl sm:rounded-3xl text-[13px] text-[var(--primary)] cursor-pointer"
+            >
+              Web Design
+            </button>
+            <button
+              class="bg-white py-2.5 px-4 rounded-xl sm:rounded-3xl text-[13px] text-[var(--primary)] cursor-pointer"
+            >
+              SEO Services
+            </button>
+          </div>
+        </div>
+        <div class="hidden z-50 xl:block">
+          <img
+            class="w-full max-w-[400px]"
+            src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/740Vector_Flat-01-1-1.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+    <section class="px-[5%] sm:px-[10%] pb-[10%]">
+      <h1 class="text-center mt-10 sm:mt-20 mb-6 text-[40px]">
+        Our <span class="text-[var(--primary)]">Services</span>
+      </h1>
+      <div class="grid sm:grid-cols-2 xl:grid-cols-4 justify-between gap-5">
+        <div
+          class="bg-[#EAEFFF70] basis-[25%] text-white h-[300px] flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-3"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Frame-40.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[#1B2134] mb-1 text-[19px] font-semibold">Digital Marketing Tools</h1>
+            <p class="text-[#737373] mb-1">
+              Discover Essential Digital Marketing Tools to Help You Achieve Your Goals
+            </p>
+          </div>
+
+          <a
+            href="#"
+            class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]"
+          >
+            Explore
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </div>
+        <div
+          class="bg-[#EAEFFF70] basis-[25%] transition-colors duration-300 text-white h-[300px] flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-3"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Group.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[#1B2134] mb-1 text-[20px] font-semibold">Digital Marketing Courses</h1>
+            <p class="text-[#737373] mb-1">
+              Explore a Wide Range of Digital Marketing Courses and Learn From The Experts
+            </p>
+          </div>
+
+          <a
+            href="#"
+            class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]"
+          >
+            Explore
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </div>
+        <div
+          class="bg-[#EAEFFF70] basis-[25%] transition-colors duration-300 text-white h-[300px] flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-3"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Layer_1-1.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[#1B2134] mb-1 text-[20px] font-semibold">
+              Digital Marketing Services
+            </h1>
+            <p class="text-[#737373] mb-1">
+              Find and Compare The Best Digital Marketing Service Providers to Help Your Business
+              Grow
+            </p>
+          </div>
+
+          <a
+            href="#"
+            class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]"
+          >
+            Explore
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </div>
+        <div
+          class="basis-[25%] bg-[#EAEFFF70] transition-colors duration-300 text-white h-[300px] flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-3"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/layer1.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[#1B2134] mb-1 text-[22px] font-semibold">Content</h1>
+            <p class="text-[#737373] mb-1">
+              Find and Compare The Best Digital Marketing Service Providers to help Your Business
+              Grow
+            </p>
+          </div>
+
+          <a
+            href="#"
+            class="py-3 px-3 rounded-sm flex items-center gap-2 w-fit bg-[#0F44F31A] text-[var(--primary)]"
+          >
+            Explore
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="bg-[#FF92001A] px-[5%] py-[5%] sm:px-[10%] sm:py-20">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 ">
+        <div class="flex items-center gap-2">
+          <span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]"
+            >965</span
+          >
+          <h1 class="text-[22px] sm:text-[40px]">
+            Digital Marketing <span class="text-[var(--primary)]">Tools</span>
+          </h1>
+        </div>
+        <div class="flex justify-end">
+          <button class="bg-[var(--primary)] w-fit h-fit text-white py-2 px-5 rounded-sm">
+            View All
+          </button>
+        </div>
+      </div>
+      <div class="mt-5 lg:flex grid grid-cols-2 items-center gap-5">
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Content Marketing Tools
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Digital Marketing Tools
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          SEO Tools
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Social Media Tools
+        </button>
+      </div>
+      <div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+      </div>
+    </section>
+    <section class="bg-white px-[5%] py-10 sm:px-[10%] sm:py-20">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+        <div class="flex items-center gap-2">
+          <span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]"
+            >965</span
+          >
+          <h1 class="text-[23px] sm:text-[40px]">
+            Digital Marketing <span class="text-[var(--primary)]">Courses</span>
+          </h1>
+        </div>
+        <div class="flex justify-end">
+          <button class="bg-[var(--primary)] h-fit text-white py-2 px-5 rounded-sm">
+            View All
+          </button>
+        </div>
+      </div>
+      <div class="mt-5 lg:flex grid grid-cols-2 items-center gap-5">
+        <button
+          class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer"
+        >
+          Analytics Courses
+        </button>
+        <button
+          class="py-2.5 px-3 rounded-sm text-[12px] text-[#5A6478] border border-[#00000033] cursor-pointer"
+        >
+          Content Marketing Courses
+        </button>
+        <button
+          class="py-2.5 px-3 rounded-sm text-[12px] text-[#5A6478] border border-[#00000033] cursor-pointer"
+        >
+          Digital Marketing Courses
+        </button>
+        <button
+          class="py-2.5 px-3 rounded-sm text-[14px] text-[#5A6478] border border-[#00000033] cursor-pointer"
+        >
+          Ecommerce Courses
+        </button>
+        <button
+          class="py-2.5 px-3 rounded-sm border border-[#00000033] text-[14px] text-[#5A6478] cursor-pointer"
+        >
+          Facebook
+        </button>
+        <button
+          class="py-2.5 px-3 rounded-sm text-[14px] border border-[#00000033] text-[#5A6478] cursor-pointer"
+        >
+          SEO
+        </button>
+        <button
+          class="py-2.5 px-3 rounded-sm text-[14px] border border-[#00000033] text-[#5A6478] cursor-pointer"
+        >
+          Social Media
+        </button>
+      </div>
+      <div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
+        <div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+        <div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+        <div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+        <div class="bg-white border border-[#00000033] shadow-xl rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+          <a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white"
+            >Buy Now</a
+          >
+        </div>
+      </div>
+    </section>
+    <section class="bg-[#FF92001A] px-[5%] py-10 sm:px-[10%] sm:py-20">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]"
+            >965</span
+          >
+          <h1 class="text-[25px] sm:text-[40px]">
+            Digital Marketing
+            <span class="text-[var(--primary)]">Services</span>
+          </h1>
+        </div>
+        <div class="flex justify-end">
+          <button class="bg-[var(--primary)] h-fit text-white py-2 px-5 rounded-sm">
+            View All
+          </button>
+        </div>
+      </div>
+      <div class="mt-5 lg:flex grid-cols-2 grid items-center gap-5">
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Content Marketing
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[12px] text-[#5A6478] cursor-pointer">
+          Digital Marketing Services
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Email Marketing
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          SEO Services
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Social Media
+        </button>
+        <button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+          Web Design
+        </button>
+      </div>
+      <div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+        </div>
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+        </div>
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+        </div>
+        <div class="bg-white rounded-sm">
+          <div class="p-4 flex flex-col items-center">
+            <img
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png"
+              alt=""
+            />
+            <h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+            <p class="text-[#5A6478] text-center text-[14px] font-normal">
+              Broca - We help you tell your story better Broca uses AI to generate ad copy and
+              content Whether ...
+            </p>
+            <h1
+              class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center"
+            >
+              Price from
+              <span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sm:px-[10%] px-[5%] pt-[7%] pb-[5%]">
+      <h1 class="text-center mb-6 text-[40px]">
+        How it <span class="text-[var(--primary)]">Works</span>
+      </h1>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 justify-between gap-5">
+        <div
+          class="border border-[#0000000F] text-white flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-4 p-2.5 rounded-sm bg-[#0F44F333]"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Layer_1.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[var(--primary)] mb-4 text-[18px] font-bold">
+              Discover The Best Tools and Courses
+            </h1>
+            <p class="text-[#6D6D6D] text-[14px] mb-1">
+              Browse through our growing database of 7000+ Digital Marketing Tools, 4000+ Digital
+              Marketing Service providers and over 950 Digital Marketing Courses collected in a wide
+              range of categories.
+            </p>
+          </div>
+        </div>
+        <div
+          class="border border-[#0000000F] text-white flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-4 p-2.5 rounded-sm bg-[#0F44F333]"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Layer_1.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[var(--primary)] mb-4 text-[20px] font-bold">Compare Your Options</h1>
+            <p class="text-[#6D6D6D] text-[14px] mb-1">
+              Browse through our growing database of 7000+ Digital Marketing Tools, 4000+ Digital
+              Marketing Service providers and over 950 Digital Marketing Courses collected in a wide
+              range of categories.
+            </p>
+          </div>
+        </div>
+        <div
+          class="border border-[#0000000F] text-white flex flex-col justify-between rounded-sm p-4"
+        >
+          <div>
+            <img
+              class="mb-4 p-2.5 rounded-sm bg-[#0F44F333]"
+              src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Layer_1.png"
+              alt="Digital Marketing"
+            />
+            <h1 class="text-[var(--primary)] mb-4 text-[20px] font-bold">Grow Your Business</h1>
+            <p class="text-[#6D6D6D] text-[14px] mb-1">
+              Browse through our growing database of 7000+ Digital Marketing Tools, 4000+ Digital
+              Marketing Service providers and over 950 Digital Marketing Courses collected in a wide
+              range of categories.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="px-[5%] sm:px-[10%] pb-[5%]">
+      <div class="my-gradient-background text-white rounded-sm py-7">
+        <div class="p-2 w-[100%] flex flex-col justify-between items-center">
+          <h1 class="text-center text-[25px] sm:text-[40px] leading-[45px] mb-1.5 font-bold">
+            Subscribe to Our <span class="text-[#FFCC00]">Newsletter</span>
+          </h1>
+          <h2 class="text-center text-[18px] sm:text-[22px] font-medium mb-4.75">
+            Stay up to date with the latest marketing tools and tips.
+          </h2>
+          <div
+            class="sm:w-[70%] w-full mb-6 bg-[#FFFFFF1A] rounded-[8px] flex flex-col  md:flex-row gap-3 justify-between p-6"
+          >
+            <input
+              class="bg-white text-[#797979] px-5 py-4 rounded-sm basis-[75%]"
+              placeholder="e.g. SEO or Email Marketing"
+              type="text"
+            />
+            <button
+              class="cursor-pointer text-center text-[18px] font-semibold py-2 bg-[#FFCC00] px-5 gap-3 rounded-sm text-[var(--primary)]"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-[#0F44F3EB] px-[6%] sm:px-[11%] pt-[6%] pb-[5%]">
+      <div class="flex flex-wrap lg:flex-nowrap gap-4 justify-between border-b border-white pb-9">
+        <div class="w-fit">
+          <img
+            src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/logo.png"
+            alt=""
+          />
+        </div>
+        <nav>
+          <ul class="flex flex-col md:flex-row items-end gap-9 text-white">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Terms and Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </nav>
+        <div class="w-full lg:w-fit flex justify-center md:justify-end">
+          <ul class="flex justify-center items-center gap-2.5">
+            <li>
+              <a
+                href="#"
+                class="bg-[#FFCC00] flex items-center justify-center text-[var(--primary)] w-[35px] h-[35px] rounded-[50%]"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="bg-[#FFCC00] flex items-center justify-center text-[var(--primary)] w-[35px] h-[35px] rounded-[50%]"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="bg-[#FFCC00] flex items-center justify-center text-[var(--primary)] w-[35px] h-[35px] rounded-[50%]"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-4 text-white text-[12px] text-center">
+        © 2021 Copyright Digital Marketing Supermarket. Made by WOOBRO
+      </p>
+    </footer>
+  </body>
+  <script>
+    const toggleBtn = document.getElementById('toggle-btn');
+    const mobNav = document.getElementById('mob-nav');
+
+    toggleBtn.addEventListener('click', () => {
+      mobNav.classList.toggle('hidden');
+    });
+  </script>
+</html>
