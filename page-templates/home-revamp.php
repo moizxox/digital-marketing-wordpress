@@ -375,91 +375,53 @@ get_header();
 <section class="bg-[#FF92001A] px-[5%] py-[5%] sm:px-[10%] sm:py-20">
 	<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 ">
 		<div class="flex items-center gap-2">
-			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]">965</span>
+			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]"><?php echo array_sum(array_column($featured_tool_categories, 'count')); ?></span>
 			<h1 class="text-[22px] sm:text-[40px]">
-				Digital Marketing <span class="text-[var(--primary)]">Tools</span>
+				<?php _e('Digital Marketing Tools', 'wb'); ?><span class="text-[var(--primary)]">Tools</span>
 			</h1>
 		</div>
 		<div class="flex justify-end">
-			<button class="bg-[var(--primary)] w-fit h-fit text-white py-2 px-5 rounded-sm">
-				View All
-			</button>
+			<a <?php _e('Digital Marketing Tools', 'wb'); ?> class="bg-[var(--primary)] w-fit h-fit text-white py-2 px-5 rounded-sm">
+				<?php _e('View All', 'wb'); ?>
+			</a>
 		</div>
 	</div>
 	<div class="mt-5 lg:flex grid grid-cols-2 items-center gap-5">
-		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
-			Content Marketing Tools
-		</button>
-		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
-			Digital Marketing Tools
-		</button>
-		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
-			SEO Tools
-		</button>
-		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
-			Social Media Tools
-		</button>
+		<?php $i = 0;
+		foreach ($featured_tool_categories as $featured_tool_category) : ?>
+			<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+				Content Marketing Tools
+			</button>
+			$featured_tool_category) : ?>
+			<li <?php echo ($i == 0) ? 'class="current_tab"' : ''; ?>>
+				<a href="<?php echo get_term_link($featured_tool_category); ?>" class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer" data-type="tool" data-category="<?php echo $featured_tool_category->term_id; ?>">
+					<?php echo $featured_tool_category->name; ?>
+				</a>
+			</li>
+		<?php $i++;
+		endforeach; ?>
+
 	</div>
 	<div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
-		<div class="bg-white rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
+		<?php $i = 0;
+		foreach ($featured_tool_categories as $featured_tool_category) : ?>
+			<div class="bg-white rounded-sm">
+				<div class="p-4 flex flex-col items-center">
+					<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+					<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+					<p class="text-[#5A6478] text-center text-[14px] font-normal">
+						Broca - We help you tell your story better Broca uses AI to generate ad copy and
+						content Whether ...
+					</p>
+					<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+						Price from
+						<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+					</h1>
+				</div>
+				<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
 			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
-		<div class="bg-white rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
-			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
-		<div class="bg-white rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
-			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
-		<div class="bg-white rounded-sm">
-			<div class="p-4 flex flex-col items-center">
-				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
-				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
-				<p class="text-[#5A6478] text-center text-[14px] font-normal">
-					Broca - We help you tell your story better Broca uses AI to generate ad copy and
-					content Whether ...
-				</p>
-				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
-					Price from
-					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
-				</h1>
-			</div>
-			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
-		</div>
+		<?php $i++;
+		endforeach; ?>
+
 	</div>
 </section>
