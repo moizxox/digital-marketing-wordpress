@@ -370,3 +370,96 @@ get_header();
 </section>
 
 <!-- <?php endif; ?> -->
+
+<!-- cowl carcousel  -->
+<section class="bg-[#FF92001A] px-[5%] py-[5%] sm:px-[10%] sm:py-20">
+	<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 ">
+		<div class="flex items-center gap-2">
+			<span class="bg-[#FFCC00] text-[var(--primary)] py-1 px-2 rounded-sm text-[20px]">965</span>
+			<h1 class="text-[22px] sm:text-[40px]">
+				Digital Marketing <span class="text-[var(--primary)]">Tools</span>
+			</h1>
+		</div>
+		<div class="flex justify-end">
+			<button class="bg-[var(--primary)] w-fit h-fit text-white py-2 px-5 rounded-sm">
+				View All
+			</button>
+		</div>
+	</div>
+	<div class="mt-5 lg:flex grid grid-cols-2 items-center gap-5">
+		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+			Content Marketing Tools
+		</button>
+		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+			Digital Marketing Tools
+		</button>
+		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+			SEO Tools
+		</button>
+		<button class="bg-white py-2.5 px-4 rounded-sm text-[14px] text-[#5A6478] cursor-pointer">
+			Social Media Tools
+		</button>
+	</div>
+	<div class="mt-5 grid sm:grid-cols-2 xl:grid-cols-4 justify-between items-center gap-5">
+		<div class="bg-white rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+		<div class="bg-white rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+		<div class="bg-white rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+		<div class="bg-white rounded-sm">
+			<div class="p-4 flex flex-col items-center">
+				<img src="https://digitalmarketingsupermarket.com/wp-content/uploads/2025/05/Saly-1.png" alt="" />
+				<h1 class="text-[#1B1D1F] text-center text-[20px] font-semibold">Broca</h1>
+				<p class="text-[#5A6478] text-center text-[14px] font-normal">
+					Broca - We help you tell your story better Broca uses AI to generate ad copy and
+					content Whether ...
+				</p>
+				<h1 class="flex gap-2 items-center justify-center text-[#1B1D1F] text-[14px] text-center">
+					Price from
+					<span class="text-[#1B1D1F] text-center text-[20px] font-semibold">$49</span>
+				</h1>
+			</div>
+			<a href="#" class="block text-center py-3.5 rounded-b-sm bg-[var(--primary)] text-white">Buy Now</a>
+		</div>
+	</div>
+</section>
