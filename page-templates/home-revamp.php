@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!isset($_GET['test'])) {
-	get_template_part('page-templates/homepage-test');
+	get_template_part('page-templates/homepage-revamp');
 
 	exit;
 }
