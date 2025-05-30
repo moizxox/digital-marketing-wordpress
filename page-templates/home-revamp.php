@@ -275,8 +275,9 @@ get_header();
 				<?php _e('One Stop Shop For', 'wb'); ?> <?php _e(sprintf('All Your %sDigital', '<br>'), 'wb'); ?>
 				<span class="text-[#FFCC00]"><?php _e('Marketing Needs', 'wb'); ?></span> Needs
 			</h1>
-			<h2 class="text-[18px] sm:text-[22px] font-medium mb-4.75">
-				<?php _e('Search for Digital Marketing', 'wb'); ?> | <span class="element" data-text1="Tools" data-text2="Courses" data-text3="Services" data-loop="true" data-backdelay="3000">
+			<h2 class="text-[18px] text-white sm:text-[22px] font-medium mb-4.75">
+				<?php _e('Search for Digital Marketing', 'wb'); ?> |
+				<span class="element" data-text1="Tools" data-text2="Courses" data-text3="Services" data-loop="true" data-backdelay="3000">
 					<?php _e('Tools', 'wb'); ?>
 				</span>
 			</h2>
