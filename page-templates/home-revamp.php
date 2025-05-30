@@ -9,11 +9,11 @@ if (!defined('ABSPATH')) {
 }
 
 
-if (!isset($_GET['test'])) {
-	get_template_part('page-templates/homepage-test');
+// if (!isset($_GET['test'])) {
+// 	get_template_part('page-templates/homepage-test');
 
-	exit;
-}
+// 	exit;
+// }
 
 wp_enqueue_script('typed', WB_THEME_URL . '/js/typed.js', array('main'));
 wp_enqueue_script('owl.carousel', WB_THEME_URL . '/js/owl.carousel.js', array('typed'));
